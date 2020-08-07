@@ -2,21 +2,15 @@ package com.ns.tbe.model.nodes;
 
 import org.neo4j.springframework.data.core.schema.GeneratedValue;
 import org.neo4j.springframework.data.core.schema.Id;
-import org.neo4j.springframework.data.core.schema.Node;
 
 import java.time.LocalDateTime;
 
-@Node
-public class Country {
+public class LookupConfiguration {
     @Id
     @GeneratedValue
     private int id;
-    private String name;
-    private String iSOCodeTwo;
-    private String iSOCodeThree;
-    private Boolean global;
-    private Boolean territory;
-    private int regionID;
+    private String key;
+    private int value;
     private LocalDateTime createdDate;
     private Long createdBy;
     private LocalDateTime updatedDate;
@@ -31,52 +25,20 @@ public class Country {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getKey() {
+        return key;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setKey(String key) {
+        this.key = key;
     }
 
-    public String getiSOCodeTwo() {
-        return iSOCodeTwo;
+    public int getValue() {
+        return value;
     }
 
-    public void setiSOCodeTwo(String iSOCodeTwo) {
-        this.iSOCodeTwo = iSOCodeTwo;
-    }
-
-    public String getiSOCodeThree() {
-        return iSOCodeThree;
-    }
-
-    public void setiSOCodeThree(String iSOCodeThree) {
-        this.iSOCodeThree = iSOCodeThree;
-    }
-
-    public Boolean getGlobal() {
-        return global;
-    }
-
-    public void setGlobal(Boolean global) {
-        this.global = global;
-    }
-
-    public Boolean getTerritory() {
-        return territory;
-    }
-
-    public void setTerritory(Boolean territory) {
-        this.territory = territory;
-    }
-
-    public int getRegionID() {
-        return regionID;
-    }
-
-    public void setRegionID(int regionID) {
-        this.regionID = regionID;
+    public void setValue(int value) {
+        this.value = value;
     }
 
     public LocalDateTime getCreatedDate() {

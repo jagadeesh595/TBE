@@ -2,32 +2,26 @@ package com.ns.tbe.model.nodes;
 
 import org.neo4j.springframework.data.core.schema.GeneratedValue;
 import org.neo4j.springframework.data.core.schema.Id;
-import org.neo4j.springframework.data.core.schema.Node;
 
 import java.time.LocalDateTime;
 
-@Node
-public class Country {
+public class MemberStatus {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     private String name;
-    private String iSOCodeTwo;
-    private String iSOCodeThree;
-    private Boolean global;
-    private Boolean territory;
-    private int regionID;
+    private String description;
     private LocalDateTime createdDate;
     private Long createdBy;
     private LocalDateTime updatedDate;
     private Long updatedBy;
     private int rowStatusId;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -39,44 +33,12 @@ public class Country {
         this.name = name;
     }
 
-    public String getiSOCodeTwo() {
-        return iSOCodeTwo;
+    public String getDescription() {
+        return description;
     }
 
-    public void setiSOCodeTwo(String iSOCodeTwo) {
-        this.iSOCodeTwo = iSOCodeTwo;
-    }
-
-    public String getiSOCodeThree() {
-        return iSOCodeThree;
-    }
-
-    public void setiSOCodeThree(String iSOCodeThree) {
-        this.iSOCodeThree = iSOCodeThree;
-    }
-
-    public Boolean getGlobal() {
-        return global;
-    }
-
-    public void setGlobal(Boolean global) {
-        this.global = global;
-    }
-
-    public Boolean getTerritory() {
-        return territory;
-    }
-
-    public void setTerritory(Boolean territory) {
-        this.territory = territory;
-    }
-
-    public int getRegionID() {
-        return regionID;
-    }
-
-    public void setRegionID(int regionID) {
-        this.regionID = regionID;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public LocalDateTime getCreatedDate() {
@@ -119,4 +81,3 @@ public class Country {
         this.rowStatusId = rowStatusId;
     }
 }
-

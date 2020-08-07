@@ -30,7 +30,7 @@ public class DataLoader {
             member.setHomePhone("999,9999,999");
             member.setWorkPhone("944,4444,445");
             member.setCreatedDate(LocalDateTime.now());
-            member.setCreatedBy(BigInteger.valueOf(1));
+            member.setCreatedBy(Long.valueOf(1));
             member.setRowStatusId(1);
 
             memberRepository.save(member).block();
@@ -45,7 +45,7 @@ public class DataLoader {
             member2.setHomePhone("999,9999,999");
             member2.setWorkPhone("944,4444,445");
             member2.setCreatedDate(LocalDateTime.now());
-            member2.setCreatedBy(BigInteger.valueOf(1));
+            member2.setCreatedBy(Long.valueOf(1));
             member2.setRowStatusId(1);
 
             Member memberRajesh = memberRepository.findByMemberId("TBE001").block();
@@ -92,7 +92,7 @@ public class DataLoader {
             member3.setHomePhone("999,9999,999");
             member3.setWorkPhone("944,4444,445");
             member3.setCreatedDate(LocalDateTime.now());
-            member3.setCreatedBy(BigInteger.valueOf(1));
+            member3.setCreatedBy(Long.valueOf(1));
             member3.setRowStatusId(1);
 
             Member memberHarish = memberRepository.findByMemberId("TBE002").block();
