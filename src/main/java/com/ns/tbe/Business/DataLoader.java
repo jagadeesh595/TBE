@@ -1,6 +1,8 @@
 package com.ns.tbe.Business;
 
-import com.ns.tbe.model.nodes.*;
+import com.ns.tbe.model.nodes.Bonus;
+import com.ns.tbe.model.nodes.Member;
+import com.ns.tbe.model.nodes.Order;
 import com.ns.tbe.model.relationships.BonusPeriod;
 import com.ns.tbe.model.relationships.MemberSponsor;
 import com.ns.tbe.repository.MemberRepository;
