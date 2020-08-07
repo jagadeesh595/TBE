@@ -85,6 +85,14 @@ public class Order {
         Id = id;
     }
 
+    public List<OrderLineItem> getOrderLineItems() {
+        return orderLineItems;
+    }
+
+    public void setOrderLineItems(List<OrderLineItem> orderLineItems) {
+        this.orderLineItems = orderLineItems;
+    }
+
     public String getOrderNumber() {
         return orderNumber;
     }

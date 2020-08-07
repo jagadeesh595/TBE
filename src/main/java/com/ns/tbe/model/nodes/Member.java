@@ -73,6 +73,9 @@ public class Member {
         return hasOrders;
     }
 
+    public void setHasOrders(List<Order> hasOrders) {
+        this.hasOrders = hasOrders;
+    }
     public boolean isDefaultAddress() {
         return isDefaultAddress;
     }
@@ -175,10 +178,6 @@ public class Member {
 
     public void setWorkPhone(String workPhone) {
         this.workPhone = workPhone;
-    }
-
-    public void setHasOrders(List<Order> hasOrders) {
-        this.hasOrders = hasOrders;
     }
 
     public Map<Bonus, BonusPeriod> getHasBonus() {
