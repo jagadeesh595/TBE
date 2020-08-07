@@ -1,5 +1,7 @@
-package com.ns.tbe.model;
+package com.ns.tbe.model.nodes;
 
+import com.ns.tbe.model.relationships.BonusPeriod;
+import com.ns.tbe.model.relationships.MemberSponsor;
 import org.neo4j.springframework.data.core.schema.GeneratedValue;
 import org.neo4j.springframework.data.core.schema.Id;
 import org.neo4j.springframework.data.core.schema.Node;
