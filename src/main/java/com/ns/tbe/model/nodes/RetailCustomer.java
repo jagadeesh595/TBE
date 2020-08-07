@@ -14,7 +14,7 @@ import java.util.Map;
 public class RetailCustomer {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     private String retailCustomerNumber;
     private Long referringfMemberId;
     private String firstName;
@@ -45,11 +45,11 @@ public class RetailCustomer {
     @Relationship(value = "referringMember", direction = Relationship.Direction.OUTGOING)
     private Member referringMember = new Member();
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

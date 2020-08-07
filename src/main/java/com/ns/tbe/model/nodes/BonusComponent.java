@@ -8,5 +8,5 @@ import org.neo4j.springframework.data.core.schema.Node;
 public class BonusComponent {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
 }

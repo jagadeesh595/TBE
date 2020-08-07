@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class PriceType {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     private String name;
     private String priceCode;
     private String description;
@@ -28,11 +28,11 @@ public class PriceType {
         this.description = description;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

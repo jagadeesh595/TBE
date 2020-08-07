@@ -4,9 +4,9 @@ import org.neo4j.springframework.data.core.schema.GeneratedValue;
 import org.neo4j.springframework.data.core.schema.Id;
 import org.neo4j.springframework.data.core.schema.Node;
 
-@Node
+//@Node
 public class OrderAuxInfo {
-    @Id
-    @GeneratedValue
+//    @Id
+//    @GeneratedValue
     private Long id;
 }

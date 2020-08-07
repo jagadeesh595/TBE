@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class CommissionPlanCompressionType {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     private Long accountId;
     private Long compensationPlanId;
     private Long compressionTypeId;
@@ -20,11 +20,11 @@ public class CommissionPlanCompressionType {
     private Long updatedBy;
     private int rowStatusId;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

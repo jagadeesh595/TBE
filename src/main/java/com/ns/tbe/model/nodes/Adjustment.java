@@ -8,5 +8,5 @@ import org.neo4j.springframework.data.core.schema.Node;
 public class Adjustment {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
 }

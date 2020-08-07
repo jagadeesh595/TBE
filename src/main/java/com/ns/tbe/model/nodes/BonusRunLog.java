@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class BonusRunLog {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     private int commissionCycleId;
     private String businessEntityCode;
     private LocalDateTime startTime;
@@ -23,11 +23,11 @@ public class BonusRunLog {
     private Long updatedBy;
     private int rowStatusId;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

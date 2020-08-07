@@ -8,7 +8,7 @@ import org.neo4j.springframework.data.core.schema.Node;
 public class OrderAddress {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     private String name;
     private String addressLine1;
     private String addressLine2;
@@ -21,11 +21,11 @@ public class OrderAddress {
     private String homePhone;
     private String workPhone;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class MemberRankLevel {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     private int rankId;
     private String title;
     private String rankCode;
@@ -21,11 +21,11 @@ public class MemberRankLevel {
     private Long updatedBy;
     private int rowStatusId;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
