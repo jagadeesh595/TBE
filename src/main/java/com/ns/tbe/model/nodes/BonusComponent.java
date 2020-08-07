@@ -42,12 +42,12 @@ public class BonusComponent {
         this.memberId = memberId;
     }
 
-    public Long getBonuscomponentId() {
-        return bonuscomponentId;
+    public Long getBonusComponentConfigId() {
+        return bonusComponentConfigId;
     }
 
-    public void setBonuscomponentId(Long bonuscomponentId) {
-        this.bonuscomponentId = bonuscomponentId;
+    public void setBonusComponentConfigId(Long bonusComponentConfigId) {
+        this.bonusComponentConfigId = bonusComponentConfigId;
     }
 
     public int getProcessinMonth() {
@@ -104,5 +104,13 @@ public class BonusComponent {
 
     public void setRowStatusId(Long rowStatusId) {
         this.rowStatusId = rowStatusId;
+    }
+
+    public BonusComponentConfig getBonusComponentConfig() {
+        return bonusComponentConfig;
+    }
+
+    public void setBonusComponentConfig(BonusComponentConfig bonusComponentConfig) {
+        this.bonusComponentConfig = bonusComponentConfig;
     }
 }
