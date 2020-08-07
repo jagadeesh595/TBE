@@ -4,7 +4,7 @@ import org.neo4j.springframework.data.core.schema.GeneratedValue;
 import org.neo4j.springframework.data.core.schema.Id;
 import org.neo4j.springframework.data.core.schema.Node;
 
-@Node
+@Node("Bonus")
 public class Bonus {
     @Id
     @GeneratedValue

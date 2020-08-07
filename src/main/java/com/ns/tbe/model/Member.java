@@ -26,7 +26,6 @@ public class Member {
     private int genderId;
     private int maritalStatusId;
     private boolean isDefaultAddress;
-    private int addressTypeId;
     private String addressLine1;
     private String addressLine2;
     private String addressLine3;
@@ -67,14 +66,6 @@ public class Member {
 
     public void setDefaultAddress(boolean defaultAddress) {
         isDefaultAddress = defaultAddress;
-    }
-
-    public int getAddressTypeId() {
-        return addressTypeId;
-    }
-
-    public void setAddressTypeId(int addressTypeId) {
-        this.addressTypeId = addressTypeId;
     }
 
     public String getAddressLine1() {

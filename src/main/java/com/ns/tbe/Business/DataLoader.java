@@ -24,7 +24,6 @@ public class DataLoader {
             member.setMemberId("TBE001");
             member.setFirstName("Rajesh");
             member.setLastName("Last");
-            member.setAddressTypeId(2);
             member.setDefaultAddress(true);
             member.setHomePhone("999,9999,999");
             member.setWorkPhone("944,4444,445");
@@ -40,7 +39,6 @@ public class DataLoader {
             member2.setMemberId("TBE002");
             member2.setFirstName("Harish");
             member2.setLastName("Last");
-            member2.setAddressTypeId(2);
             member2.setDefaultAddress(true);
             member2.setHomePhone("999,9999,999");
             member2.setWorkPhone("944,4444,445");
@@ -88,7 +86,6 @@ public class DataLoader {
             member3.setMemberId("TBE003");
             member3.setFirstName("Kiran");
             member3.setLastName("Last");
-            member3.setAddressTypeId(3);
             member3.setDefaultAddress(true);
             member3.setHomePhone("999,9999,999");
             member3.setWorkPhone("944,4444,445");
