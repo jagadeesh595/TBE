@@ -44,19 +44,30 @@ public class Member {
     private LocalDateTime nomineeDateOfBirth;
     private int nomineeRelationshipId;
     private LocalDateTime createdDate;
-    private BigInteger createdBy;
+    private Long createdBy;
     private LocalDateTime updatedDate;
-    private BigInteger updatedBy;
+    private Long updatedBy;
     private int rowStatusId;
 
     @Relationship(value = "sponsor", direction = Relationship.Direction.OUTGOING)
     private Map<Member, MemberSponsor> hasSponsor = new HashMap<>();
+
+    @Relationship(value = "additionInfo", direction = Relationship.Direction.OUTGOING)
+    private MemberAuxInfo memberAuxInfo = new MemberAuxInfo();
 
     @Relationship(value = "ordered", direction = Relationship.Direction.OUTGOING)
     private List<Order> hasOrders = new ArrayList<>();
 
     @Relationship(value = "bonus", direction = Relationship.Direction.OUTGOING)
     private Map<Bonus, BonusPeriod> hasBonus = new HashMap<>();
+
+    public MemberAuxInfo getMemberAuxInfo() {
+        return memberAuxInfo;
+    }
+
+    public void setMemberAuxInfo(MemberAuxInfo memberAuxInfo) {
+        this.memberAuxInfo = memberAuxInfo;
+    }
 
     public List<Order> getHasOrders() {
         return hasOrders;
@@ -282,11 +293,11 @@ public class Member {
         this.createdDate = createdDate;
     }
 
-    public BigInteger getCreatedBy() {
+    public Long getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(BigInteger createdBy) {
+    public void setCreatedBy(Long createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -298,11 +309,11 @@ public class Member {
         this.updatedDate = updatedDate;
     }
 
-    public BigInteger getUpdatedBy() {
+    public Long getUpdatedBy() {
         return updatedBy;
     }
 
-    public void setUpdatedBy(BigInteger updatedBy) {
+    public void setUpdatedBy(Long updatedBy) {
         this.updatedBy = updatedBy;
     }
 
