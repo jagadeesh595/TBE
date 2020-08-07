@@ -14,13 +14,13 @@ public class Bonus {
     @Id
     @GeneratedValue
     private Long id;
-    private int businessEntityId;
+    private Long businessEntityId;
     private int processingYear;
     private int processingMonth;
-    private int BonusCycleId;
+    private Long BonusCycleId;
     private Long memberId;
-    private int beginningLevelId;
-    private int endingLevelId;
+    private Long beginningLevelId;
+    private Long endingLevelId;
     private LocalDateTime createdDate;
     private Long createdBy;
     private LocalDateTime updatedDate;
@@ -44,11 +44,11 @@ public class Bonus {
         this.id = id;
     }
 
-    public int getBusinessEntityId() {
+    public Long getBusinessEntityId() {
         return businessEntityId;
     }
 
-    public void setBusinessEntityId(int businessEntityId) {
+    public void setBusinessEntityId(Long businessEntityId) {
         this.businessEntityId = businessEntityId;
     }
 
@@ -68,11 +68,11 @@ public class Bonus {
         this.processingMonth = processingMonth;
     }
 
-    public int getBonusCycleId() {
+    public Long getBonusCycleId() {
         return BonusCycleId;
     }
 
-    public void setBonusCycleId(int bonusCycleId) {
+    public void setBonusCycleId(Long bonusCycleId) {
         BonusCycleId = bonusCycleId;
     }
 
@@ -84,19 +84,19 @@ public class Bonus {
         this.memberId = memberId;
     }
 
-    public int getBeginningLevelId() {
+    public Long getBeginningLevelId() {
         return beginningLevelId;
     }
 
-    public void setBeginningLevelId(int beginningLevelId) {
+    public void setBeginningLevelId(Long beginningLevelId) {
         this.beginningLevelId = beginningLevelId;
     }
 
-    public int getEndingLevelId() {
+    public Long getEndingLevelId() {
         return endingLevelId;
     }
 
-    public void setEndingLevelId(int endingLevelId) {
+    public void setEndingLevelId(Long endingLevelId) {
         this.endingLevelId = endingLevelId;
     }
 
