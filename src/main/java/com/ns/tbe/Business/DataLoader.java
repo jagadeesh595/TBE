@@ -66,19 +66,19 @@ public class DataLoader {
             order.setTotalProductVolume(BigDecimal.valueOf(1.33));
             order.setTotalRetailPrice(BigDecimal.valueOf(200.00));
 
-            List<OrderLineItem> orderLineItems=new ArrayList<>();
-            OrderLineItem orderLineItem1=new OrderLineItem();
+            List<OrderLineItem> orderLineItems = new ArrayList<>();
+            OrderLineItem orderLineItem1 = new OrderLineItem();
             orderLineItem1.setItemName("Alvera Juice");
             orderLineItem1.setItemNumber("200134");
 
-            OrderLineItemHistory orderLineItemHistory=new OrderLineItemHistory();
+            OrderLineItemHistory orderLineItemHistory = new OrderLineItemHistory();
             orderLineItemHistory.setItemName("Juice");
             orderLineItemHistory.setItemNumber("200134");
             orderLineItem1.setOrderLineItemHistory(Arrays.asList(orderLineItemHistory));
 
             orderLineItems.add(orderLineItem1);
 
-            OrderLineItem orderLineItem2=new OrderLineItem();
+            OrderLineItem orderLineItem2 = new OrderLineItem();
             orderLineItem2.setItemName("Gel");
             orderLineItem2.setItemNumber("202455");
             orderLineItems.add(orderLineItem2);
@@ -87,17 +87,32 @@ public class DataLoader {
             member2.setHasOrders(Arrays.asList(order));
             //endregion - Order info
 
-            Bonus bonus=new Bonus();
-            bonus.setBusinessEntityId(1);
-            bonus.setBeginningLevelId(1);
-            bonus.setEndingLevelId(2);
+            Bonus bonus = new Bonus();
+            bonus.setProcessingYear(2020);
+            bonus.setProcessingMonth(8);
+            bonus.setBusinessEntityId(Long.valueOf(1));
+            bonus.setBeginningLevelId(Long.valueOf(1));
+            bonus.setEndingLevelId(Long.valueOf(2));
+
+            List<BonusDetail> bonusDetails = new ArrayList<>();
+            BonusDetail bonusDetail1 = new BonusDetail();
+            bonusDetail1.setBonusComponentId(1);
+            bonusDetail1.setBonusVolume(BigDecimal.valueOf(100.00));
+            bonusDetails.add(bonusDetail1);
+
+            BonusDetail bonusDetail2 = new BonusDetail();
+            bonusDetail2.setBonusComponentId(2);
+            bonusDetail2.setBonusVolume(BigDecimal.valueOf(200.00));
+            bonusDetails.add(bonusDetail2);
+
+            bonus.setBonusDetails(bonusDetails);
 
             Map<Bonus, BonusPeriod> bonusBonusPeriodMap = new HashMap<>();
-            BonusPeriod bonusPeriod=new BonusPeriod();
+            BonusPeriod bonusPeriod = new BonusPeriod();
             bonusPeriod.setProcessingYear(2020);
             bonusPeriod.setProcessingMonth(7);
             bonusPeriod.setProcessingCycle(1);
-            bonusBonusPeriodMap.put(bonus,bonusPeriod);
+            bonusBonusPeriodMap.put(bonus, bonusPeriod);
             member2.setHasBonus(bonusBonusPeriodMap);
 
             memberRepository.save(member2).block();
