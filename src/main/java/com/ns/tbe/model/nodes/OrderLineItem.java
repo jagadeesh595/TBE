@@ -18,18 +18,22 @@ public class OrderLineItem {
     private long orderID;
     private String itemNumber;
     private String itemName;
+    private String itemStatus;
     private int quantity;
     private String productVersion;
     private int sequence;
-    private int productType;
+    private String productType;
     private BigDecimal productVolume;
     private int shippedQty;
     private int backOrderQty;
-    private BigDecimal productRetialPrice;
-    private BigDecimal productWholeSalePrice;
-    private BigDecimal newDistributorPrice;
-    private BigDecimal taxAmount;
+    private BigDecimal retailPrice;
+    private BigDecimal wholeSalePrice;
     private BigDecimal salePrice;
+    private String taxType;
+    private BigDecimal taxAmount;
+    private BigDecimal taxableAmount;
+    private BigDecimal shippingCharge;
+    private BigDecimal handlingCharge;
     private int processingMonth;
     private int processingYear;
     private LocalDateTime orderDate;
@@ -38,9 +42,6 @@ public class OrderLineItem {
     private LocalDateTime updatedDate;
     private Long updatedBy;
     private int rowStatusId;
-
-    @Relationship(value = "orderLineItemHistory", direction = Relationship.Direction.OUTGOING)
-    List<OrderLineItemHistory> orderLineItemHistory = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -74,6 +75,14 @@ public class OrderLineItem {
         this.itemName = itemName;
     }
 
+    public String getItemStatus() {
+        return itemStatus;
+    }
+
+    public void setItemStatus(String itemStatus) {
+        this.itemStatus = itemStatus;
+    }
+
     public int getQuantity() {
         return quantity;
     }
@@ -98,11 +107,11 @@ public class OrderLineItem {
         this.sequence = sequence;
     }
 
-    public int getProductType() {
+    public String getProductType() {
         return productType;
     }
 
-    public void setProductType(int productType) {
+    public void setProductType(String productType) {
         this.productType = productType;
     }
 
@@ -130,28 +139,36 @@ public class OrderLineItem {
         this.backOrderQty = backOrderQty;
     }
 
-    public BigDecimal getProductRetialPrice() {
-        return productRetialPrice;
+    public BigDecimal getRetailPrice() {
+        return retailPrice;
     }
 
-    public void setProductRetialPrice(BigDecimal productRetialPrice) {
-        this.productRetialPrice = productRetialPrice;
+    public void setRetailPrice(BigDecimal retailPrice) {
+        this.retailPrice = retailPrice;
     }
 
-    public BigDecimal getProductWholeSalePrice() {
-        return productWholeSalePrice;
+    public BigDecimal getWholeSalePrice() {
+        return wholeSalePrice;
     }
 
-    public void setProductWholeSalePrice(BigDecimal productWholeSalePrice) {
-        this.productWholeSalePrice = productWholeSalePrice;
+    public void setWholeSalePrice(BigDecimal wholeSalePrice) {
+        this.wholeSalePrice = wholeSalePrice;
     }
 
-    public BigDecimal getNewDistributorPrice() {
-        return newDistributorPrice;
+    public BigDecimal getSalePrice() {
+        return salePrice;
     }
 
-    public void setNewDistributorPrice(BigDecimal newDistributorPrice) {
-        this.newDistributorPrice = newDistributorPrice;
+    public void setSalePrice(BigDecimal salePrice) {
+        this.salePrice = salePrice;
+    }
+
+    public String getTaxType() {
+        return taxType;
+    }
+
+    public void setTaxType(String taxType) {
+        this.taxType = taxType;
     }
 
     public BigDecimal getTaxAmount() {
@@ -162,12 +179,28 @@ public class OrderLineItem {
         this.taxAmount = taxAmount;
     }
 
-    public BigDecimal getSalePrice() {
-        return salePrice;
+    public BigDecimal getTaxableAmount() {
+        return taxableAmount;
     }
 
-    public void setSalePrice(BigDecimal salePrice) {
-        this.salePrice = salePrice;
+    public void setTaxableAmount(BigDecimal taxableAmount) {
+        this.taxableAmount = taxableAmount;
+    }
+
+    public BigDecimal getShippingCharge() {
+        return shippingCharge;
+    }
+
+    public void setShippingCharge(BigDecimal shippingCharge) {
+        this.shippingCharge = shippingCharge;
+    }
+
+    public BigDecimal getHandlingCharge() {
+        return handlingCharge;
+    }
+
+    public void setHandlingCharge(BigDecimal handlingCharge) {
+        this.handlingCharge = handlingCharge;
     }
 
     public int getProcessingMonth() {
@@ -232,13 +265,5 @@ public class OrderLineItem {
 
     public void setRowStatusId(int rowStatusId) {
         this.rowStatusId = rowStatusId;
-    }
-
-    public List<OrderLineItemHistory> getOrderLineItemHistory() {
-        return orderLineItemHistory;
-    }
-
-    public void setOrderLineItemHistory(List<OrderLineItemHistory> orderLineItemHistory) {
-        this.orderLineItemHistory = orderLineItemHistory;
     }
 }

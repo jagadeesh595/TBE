@@ -12,7 +12,7 @@ public class BonusProcessingSummary {
     @GeneratedValue
     private Long id;
     private int bonusCycleId;
-    private String businessEntityCode;
+    private String operatingCompanyCode;
     private int processingMonth;
     private int processingYear;
     private String comments;
@@ -40,12 +40,12 @@ public class BonusProcessingSummary {
         this.bonusCycleId = bonusCycleId;
     }
 
-    public String getBusinessEntityCode() {
-        return businessEntityCode;
+    public String getOperatingCompanyCode() {
+        return operatingCompanyCode;
     }
 
-    public void setBusinessEntityCode(String businessEntityCode) {
-        this.businessEntityCode = businessEntityCode;
+    public void setOperatingCompanyCode(String operatingCompanyCode) {
+        this.operatingCompanyCode = operatingCompanyCode;
     }
 
     public int getProcessingMonth() {

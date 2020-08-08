@@ -1,14 +1,13 @@
 package com.ns.tbe.model.nodes;
 
-import com.ns.tbe.model.relationships.MemberSponsor;
 import org.neo4j.springframework.data.core.schema.GeneratedValue;
 import org.neo4j.springframework.data.core.schema.Id;
 import org.neo4j.springframework.data.core.schema.Node;
 import org.neo4j.springframework.data.core.schema.Relationship;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 @Node
 public class RetailCustomer {
@@ -16,10 +15,13 @@ public class RetailCustomer {
     @GeneratedValue
     private Long id;
     private String retailCustomerNumber;
-    private Long referringfMemberId;
+    private Long referringMemberId;
     private String firstName;
     private String middleName;
     private String lastName;
+    private Long operatingCompanyId;
+    private LocalDateTime enrolledDate;
+    private int memberStatusId;
     private LocalDateTime dateOfBirth;
     private String emailId;
     private int genderId;
@@ -32,7 +34,7 @@ public class RetailCustomer {
     private int stateCode;
     private String countryCode;
     private String postalCode;
-    private String lattitude;
+    private String latitude;
     private String longitude;
     private String homePhone;
     private String workPhone;
@@ -43,7 +45,10 @@ public class RetailCustomer {
     private int rowStatusId;
 
     @Relationship(value = "referringMember", direction = Relationship.Direction.OUTGOING)
-    private Member referringMember = new Member();
+    private Member referringMember;
+
+    @Relationship(value = "ordered", direction = Relationship.Direction.OUTGOING)
+    private List<Order> hasOrders = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -61,12 +66,12 @@ public class RetailCustomer {
         this.retailCustomerNumber = retailCustomerNumber;
     }
 
-    public Long getReferringfMemberId() {
-        return referringfMemberId;
+    public Long getReferringMemberId() {
+        return referringMemberId;
     }
 
-    public void setReferringfMemberId(Long referringfMemberId) {
-        this.referringfMemberId = referringfMemberId;
+    public void setReferringMemberId(Long referringMemberId) {
+        this.referringMemberId = referringMemberId;
     }
 
     public String getFirstName() {
@@ -189,12 +194,12 @@ public class RetailCustomer {
         this.postalCode = postalCode;
     }
 
-    public String getLattitude() {
-        return lattitude;
+    public String getLatitude() {
+        return latitude;
     }
 
-    public void setLattitude(String lattitude) {
-        this.lattitude = lattitude;
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
     }
 
     public String getLongitude() {
@@ -259,6 +264,38 @@ public class RetailCustomer {
 
     public void setRowStatusId(int rowStatusId) {
         this.rowStatusId = rowStatusId;
+    }
+
+    public Long getOperatingCompanyId() {
+        return operatingCompanyId;
+    }
+
+    public void setOperatingCompanyId(Long operatingCompanyId) {
+        this.operatingCompanyId = operatingCompanyId;
+    }
+
+    public LocalDateTime getEnrolledDate() {
+        return enrolledDate;
+    }
+
+    public void setEnrolledDate(LocalDateTime enrolledDate) {
+        this.enrolledDate = enrolledDate;
+    }
+
+    public int getMemberStatusId() {
+        return memberStatusId;
+    }
+
+    public void setMemberStatusId(int memberStatusId) {
+        this.memberStatusId = memberStatusId;
+    }
+
+    public List<Order> getHasOrders() {
+        return hasOrders;
+    }
+
+    public void setHasOrders(List<Order> hasOrders) {
+        this.hasOrders = hasOrders;
     }
 
     public Member getReferringMember() {

@@ -7,12 +7,14 @@ import org.neo4j.springframework.data.core.schema.Node;
 import java.time.LocalDateTime;
 
 @Node
-public class PriceType {
+public class AdjustmentCode {
     @Id
     @GeneratedValue
     private Long id;
+    private Long operatingCompanyId;
+    private Long adjustmentTypeId;
     private String name;
-    private String priceCode;
+    private String code;
     private String description;
     private LocalDateTime createdDate;
     private Long createdBy;
@@ -20,20 +22,28 @@ public class PriceType {
     private Long updatedBy;
     private int rowStatusId;
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getOperatingCompanyId() {
+        return operatingCompanyId;
+    }
+
+    public void setOperatingCompanyId(Long operatingCompanyId) {
+        this.operatingCompanyId = operatingCompanyId;
+    }
+
+    public Long getAdjustmentTypeId() {
+        return adjustmentTypeId;
+    }
+
+    public void setAdjustmentTypeId(Long adjustmentTypeId) {
+        this.adjustmentTypeId = adjustmentTypeId;
     }
 
     public String getName() {
@@ -44,12 +54,20 @@ public class PriceType {
         this.name = name;
     }
 
-    public String getPriceCode() {
-        return priceCode;
+    public String getCode() {
+        return code;
     }
 
-    public void setPriceCode(String priceCode) {
-        this.priceCode = priceCode;
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public LocalDateTime getCreatedDate() {

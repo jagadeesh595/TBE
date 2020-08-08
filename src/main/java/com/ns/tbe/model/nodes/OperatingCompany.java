@@ -7,11 +7,11 @@ import org.neo4j.springframework.data.core.schema.Node;
 import java.time.LocalDateTime;
 
 @Node
-public class BusinessEntity {
+public class OperatingCompany {
     @Id
     @GeneratedValue
     private Long id;
-    private String businessEntityName;
+    private String operatingCompanyName;
     private String shortCode;
     private String emailAddress;
     private String countryCode;
@@ -32,12 +32,12 @@ public class BusinessEntity {
         this.id = id;
     }
 
-    public String getBusinessEntityName() {
-        return businessEntityName;
+    public String getOperatingCompanyName() {
+        return operatingCompanyName;
     }
 
-    public void setBusinessEntityName(String businessEntityName) {
-        this.businessEntityName = businessEntityName;
+    public void setOperatingCompanyName(String operatingCompanyName) {
+        this.operatingCompanyName = operatingCompanyName;
     }
 
     public String getShortCode() {

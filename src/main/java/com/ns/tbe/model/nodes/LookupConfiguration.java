@@ -10,11 +10,8 @@ public class LookupConfiguration {
     @GeneratedValue
     private Long id;
     private String key;
-    private int value;
-    private LocalDateTime createdDate;
-    private Long createdBy;
-    private LocalDateTime updatedDate;
-    private Long updatedBy;
+    private String value;
+    private String description;
     private int rowStatusId;
 
     public Long getId() {
@@ -33,44 +30,20 @@ public class LookupConfiguration {
         this.key = key;
     }
 
-    public int getValue() {
+    public String getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(String value) {
         this.value = value;
     }
 
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Long getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(Long createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public LocalDateTime getUpdatedDate() {
-        return updatedDate;
-    }
-
-    public void setUpdatedDate(LocalDateTime updatedDate) {
-        this.updatedDate = updatedDate;
-    }
-
-    public Long getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(Long updatedBy) {
-        this.updatedBy = updatedBy;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getRowStatusId() {

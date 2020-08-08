@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -54,9 +53,8 @@ public class DataLoader {
             memberSponsor.setEnrolledDate(LocalDateTime.now());
             memberSponsor.setMemberStatusId(1);
             memberSponsor.setSalesCountry("USA");
-
             memberMemberSponsor1.put(memberRajesh, memberSponsor);
-            member2.setHasSponsor(memberMemberSponsor1);
+            member2.setSponsors(memberMemberSponsor1);
 
             //region - order info
             Order order = new Order();
@@ -71,11 +69,6 @@ public class DataLoader {
             orderLineItem1.setItemName("Alvera Juice");
             orderLineItem1.setItemNumber("200134");
 
-            OrderLineItemHistory orderLineItemHistory = new OrderLineItemHistory();
-            orderLineItemHistory.setItemName("Juice");
-            orderLineItemHistory.setItemNumber("200134");
-            orderLineItem1.setOrderLineItemHistory(Arrays.asList(orderLineItemHistory));
-
             orderLineItems.add(orderLineItem1);
 
             OrderLineItem orderLineItem2 = new OrderLineItem();
@@ -84,36 +77,30 @@ public class DataLoader {
             orderLineItems.add(orderLineItem2);
 
             order.setOrderLineItems(orderLineItems);
-            member2.setHasOrders(Arrays.asList(order));
+            member2.setOrders(Arrays.asList(order));
             //endregion - Order info
 
-            Bonus bonus = new Bonus();
+            BonusMaster bonus = new BonusMaster();
             bonus.setProcessingYear(2020);
             bonus.setProcessingMonth(8);
-            bonus.setBusinessEntityId(Long.valueOf(1));
+            bonus.setOperatingCompanyId(Long.valueOf(1));
             bonus.setBeginningLevelId(Long.valueOf(1));
             bonus.setEndingLevelId(Long.valueOf(2));
 
-            List<BonusDetail> bonusDetails = new ArrayList<>();
-            BonusDetail bonusDetail1 = new BonusDetail();
-            bonusDetail1.setBonusComponentId(1);
-            bonusDetail1.setBonusVolume(BigDecimal.valueOf(100.00));
-            bonusDetails.add(bonusDetail1);
+            List<BonusMaster> bonusMasters = new ArrayList<>();
+            BonusMaster bonusMaster1 = new BonusMaster();
+            bonusMasters.add(bonusMaster1);
 
-            BonusDetail bonusDetail2 = new BonusDetail();
-            bonusDetail2.setBonusComponentId(2);
-            bonusDetail2.setBonusVolume(BigDecimal.valueOf(200.00));
-            bonusDetails.add(bonusDetail2);
+            BonusMaster bonusMaster2 = new BonusMaster();
+            bonusMasters.add(bonusMaster2);
 
-            bonus.setBonusDetails(bonusDetails);
-
-            Map<Bonus, BonusPeriod> bonusBonusPeriodMap = new HashMap<>();
+            Map<BonusMaster, BonusPeriod> bonusBonusPeriodMap = new HashMap<>();
             BonusPeriod bonusPeriod = new BonusPeriod();
             bonusPeriod.setProcessingYear(2020);
             bonusPeriod.setProcessingMonth(7);
             bonusPeriod.setProcessingCycle(1);
             bonusBonusPeriodMap.put(bonus, bonusPeriod);
-            member2.setHasBonus(bonusBonusPeriodMap);
+            member2.setBonusDetails(bonusBonusPeriodMap);
 
             memberRepository.save(member2).block();
             //endregion
@@ -146,7 +133,7 @@ public class DataLoader {
             memberSponsor2.setSalesCountry("GBR");
             memberMemberSponsorMap.put(memberHarish, memberSponsor2);
 
-            member3.setHasSponsor(memberMemberSponsorMap);
+            member3.setSponsors(memberMemberSponsorMap);
 
             memberRepository.save(member3).block();
             //endregion

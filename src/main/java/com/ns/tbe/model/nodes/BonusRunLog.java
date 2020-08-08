@@ -12,7 +12,7 @@ public class BonusRunLog {
     @GeneratedValue
     private Long id;
     private int commissionCycleId;
-    private String businessEntityCode;
+    private String operatingCompanyCode;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private String errorMessage;
@@ -39,12 +39,12 @@ public class BonusRunLog {
         this.commissionCycleId = commissionCycleId;
     }
 
-    public String getBusinessEntityCode() {
-        return businessEntityCode;
+    public String getOperatingCompanyCode() {
+        return operatingCompanyCode;
     }
 
-    public void setBusinessEntityCode(String businessEntityCode) {
-        this.businessEntityCode = businessEntityCode;
+    public void setOperatingCompanyCode(String operatingCompanyCode) {
+        this.operatingCompanyCode = operatingCompanyCode;
     }
 
     public LocalDateTime getStartTime() {

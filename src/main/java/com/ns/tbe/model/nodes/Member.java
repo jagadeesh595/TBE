@@ -7,7 +7,6 @@ import org.neo4j.springframework.data.core.schema.Id;
 import org.neo4j.springframework.data.core.schema.Node;
 import org.neo4j.springframework.data.core.schema.Relationship;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +26,15 @@ public class Member {
     private String emailId;
     private int genderId;
     private int maritalStatusId;
+    private Long operatingCompanyId;
+    private LocalDateTime enrolledDate;
+    private int memberStatusId;
+    private int memberTypeId;
+    private int rankLevelId;
+    private int workingRankLevelId;
+    private boolean isForeignMember;
+    private boolean isInheritedManager;
+    private boolean isTransferredManager;
     private boolean isDefaultAddress;
     private String addressLine1;
     private String addressLine2;
@@ -34,9 +42,9 @@ public class Member {
     private String addressLine4;
     private String city;
     private int stateCode;
-    private String countryCode;
+    private String country;
     private String postalCode;
-    private String lattitude;
+    private String latitude;
     private String longitude;
     private String homePhone;
     private String workPhone;
@@ -49,144 +57,23 @@ public class Member {
     private Long updatedBy;
     private int rowStatusId;
 
-    @Relationship(value = "sponsor", direction = Relationship.Direction.OUTGOING)
-    private Map<Member, MemberSponsor> hasSponsor = new HashMap<>();
-
-    @Relationship(value = "additionInfo", direction = Relationship.Direction.OUTGOING)
-    private MemberAuxInfo memberAuxInfo = new MemberAuxInfo();
+    @Relationship(value = "sponsoredBy", direction = Relationship.Direction.OUTGOING)
+    private Map<Member, MemberSponsor> sponsors = new HashMap<>();
 
     @Relationship(value = "ordered", direction = Relationship.Direction.OUTGOING)
-    private List<Order> hasOrders = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
 
     @Relationship(value = "bonus", direction = Relationship.Direction.OUTGOING)
-    private Map<Bonus, BonusPeriod> hasBonus = new HashMap<>();
+    private Map<BonusMaster, BonusPeriod> bonusDetails = new HashMap<>();
 
-    public MemberAuxInfo getMemberAuxInfo() {
-        return memberAuxInfo;
-    }
+    @Relationship(value = "bonusHistory", direction = Relationship.Direction.OUTGOING)
+    private Map<BonusHistory, BonusPeriod> bonusHistory = new HashMap<>();
 
-    public void setMemberAuxInfo(MemberAuxInfo memberAuxInfo) {
-        this.memberAuxInfo = memberAuxInfo;
-    }
+    @Relationship(value = "bonusOrders", direction = Relationship.Direction.OUTGOING)
+    private List<BonusOrderDetail> bonusOrderDetails = new ArrayList<>();
 
-    public List<Order> getHasOrders() {
-        return hasOrders;
-    }
-
-    public void setHasOrders(List<Order> hasOrders) {
-        this.hasOrders = hasOrders;
-    }
-    public boolean isDefaultAddress() {
-        return isDefaultAddress;
-    }
-
-    public void setDefaultAddress(boolean defaultAddress) {
-        isDefaultAddress = defaultAddress;
-    }
-
-    public String getAddressLine1() {
-        return addressLine1;
-    }
-
-    public void setAddressLine1(String addressLine1) {
-        this.addressLine1 = addressLine1;
-    }
-
-    public String getAddressLine2() {
-        return addressLine2;
-    }
-
-    public void setAddressLine2(String addressLine2) {
-        this.addressLine2 = addressLine2;
-    }
-
-    public String getAddressLine3() {
-        return addressLine3;
-    }
-
-    public void setAddressLine3(String addressLine3) {
-        this.addressLine3 = addressLine3;
-    }
-
-    public String getAddressLine4() {
-        return addressLine4;
-    }
-
-    public void setAddressLine4(String addressLine4) {
-        this.addressLine4 = addressLine4;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public int getStateCode() {
-        return stateCode;
-    }
-
-    public void setStateCode(int stateCode) {
-        this.stateCode = stateCode;
-    }
-
-    public String getCountryCode() {
-        return countryCode;
-    }
-
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
-    public String getLattitude() {
-        return lattitude;
-    }
-
-    public void setLattitude(String lattitude) {
-        this.lattitude = lattitude;
-    }
-
-    public String getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getHomePhone() {
-        return homePhone;
-    }
-
-    public void setHomePhone(String homePhone) {
-        this.homePhone = homePhone;
-    }
-
-    public String getWorkPhone() {
-        return workPhone;
-    }
-
-    public void setWorkPhone(String workPhone) {
-        this.workPhone = workPhone;
-    }
-
-    public Map<Bonus, BonusPeriod> getHasBonus() {
-        return hasBonus;
-    }
-
-    public void setHasBonus(Map<Bonus, BonusPeriod> hasBonus) {
-        this.hasBonus = hasBonus;
-    }
+    @Relationship(value = "bonusAdjustments", direction = Relationship.Direction.OUTGOING)
+    private List<BonusAdjustment> bonusAdjustments = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -260,6 +147,182 @@ public class Member {
         this.maritalStatusId = maritalStatusId;
     }
 
+    public Long getOperatingCompanyId() {
+        return operatingCompanyId;
+    }
+
+    public void setOperatingCompanyId(Long operatingCompanyId) {
+        this.operatingCompanyId = operatingCompanyId;
+    }
+
+    public LocalDateTime getEnrolledDate() {
+        return enrolledDate;
+    }
+
+    public void setEnrolledDate(LocalDateTime enrolledDate) {
+        this.enrolledDate = enrolledDate;
+    }
+
+    public int getMemberStatusId() {
+        return memberStatusId;
+    }
+
+    public void setMemberStatusId(int memberStatusId) {
+        this.memberStatusId = memberStatusId;
+    }
+
+    public int getMemberTypeId() {
+        return memberTypeId;
+    }
+
+    public void setMemberTypeId(int memberTypeId) {
+        this.memberTypeId = memberTypeId;
+    }
+
+    public int getRankLevelId() {
+        return rankLevelId;
+    }
+
+    public void setRankLevelId(int rankLevelId) {
+        this.rankLevelId = rankLevelId;
+    }
+
+    public int getWorkingRankLevelId() {
+        return workingRankLevelId;
+    }
+
+    public void setWorkingRankLevelId(int workingRankLevelId) {
+        this.workingRankLevelId = workingRankLevelId;
+    }
+
+    public boolean isForeignMember() {
+        return isForeignMember;
+    }
+
+    public void setForeignMember(boolean foreignMember) {
+        isForeignMember = foreignMember;
+    }
+
+    public boolean isInheritedManager() {
+        return isInheritedManager;
+    }
+
+    public void setInheritedManager(boolean inheritedManager) {
+        isInheritedManager = inheritedManager;
+    }
+
+    public boolean isTransferredManager() {
+        return isTransferredManager;
+    }
+
+    public void setTransferredManager(boolean transferredManager) {
+        isTransferredManager = transferredManager;
+    }
+
+    public boolean isDefaultAddress() {
+        return isDefaultAddress;
+    }
+
+    public void setDefaultAddress(boolean defaultAddress) {
+        isDefaultAddress = defaultAddress;
+    }
+
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getAddressLine3() {
+        return addressLine3;
+    }
+
+    public void setAddressLine3(String addressLine3) {
+        this.addressLine3 = addressLine3;
+    }
+
+    public String getAddressLine4() {
+        return addressLine4;
+    }
+
+    public void setAddressLine4(String addressLine4) {
+        this.addressLine4 = addressLine4;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getStateCode() {
+        return stateCode;
+    }
+
+    public void setStateCode(int stateCode) {
+        this.stateCode = stateCode;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getHomePhone() {
+        return homePhone;
+    }
+
+    public void setHomePhone(String homePhone) {
+        this.homePhone = homePhone;
+    }
+
+    public String getWorkPhone() {
+        return workPhone;
+    }
+
+    public void setWorkPhone(String workPhone) {
+        this.workPhone = workPhone;
+    }
+
     public String getNomineeName() {
         return nomineeName;
     }
@@ -324,11 +387,51 @@ public class Member {
         this.rowStatusId = rowStatusId;
     }
 
-    public Map<Member, MemberSponsor> getHasSponsor() {
-        return hasSponsor;
+    public Map<Member, MemberSponsor> getSponsors() {
+        return sponsors;
     }
 
-    public void setHasSponsor(Map<Member, MemberSponsor> hasSponsor) {
-        this.hasSponsor = hasSponsor;
+    public void setSponsors(Map<Member, MemberSponsor> sponsors) {
+        this.sponsors = sponsors;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Map<BonusMaster, BonusPeriod> getBonusDetails() {
+        return bonusDetails;
+    }
+
+    public void setBonusDetails(Map<BonusMaster, BonusPeriod> bonusDetails) {
+        this.bonusDetails = bonusDetails;
+    }
+
+    public Map<BonusHistory, BonusPeriod> getBonusHistory() {
+        return bonusHistory;
+    }
+
+    public void setBonusHistory(Map<BonusHistory, BonusPeriod> bonusHistory) {
+        this.bonusHistory = bonusHistory;
+    }
+
+    public List<BonusOrderDetail> getBonusOrderDetails() {
+        return bonusOrderDetails;
+    }
+
+    public void setBonusOrderDetails(List<BonusOrderDetail> bonusOrderDetails) {
+        this.bonusOrderDetails = bonusOrderDetails;
+    }
+
+    public List<BonusAdjustment> getBonusAdjustments() {
+        return bonusAdjustments;
+    }
+
+    public void setBonusAdjustments(List<BonusAdjustment> bonusAdjustments) {
+        this.bonusAdjustments = bonusAdjustments;
     }
 }

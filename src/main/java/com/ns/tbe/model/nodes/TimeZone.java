@@ -12,7 +12,7 @@ public class TimeZone {
     @GeneratedValue
     private Long id;
     private String name;
-    private String abbrevation;
+    private String abbreviation;
     private float offset;
     private Boolean dst;
     private String displayText;
@@ -39,12 +39,12 @@ public class TimeZone {
         this.name = name;
     }
 
-    public String getAbbrevation() {
-        return abbrevation;
+    public String getAbbreviation() {
+        return abbreviation;
     }
 
-    public void setAbbrevation(String abbrevation) {
-        this.abbrevation = abbrevation;
+    public void setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation;
     }
 
     public float getOffset() {

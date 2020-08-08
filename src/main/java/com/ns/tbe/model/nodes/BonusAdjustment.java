@@ -13,14 +13,14 @@ public class BonusAdjustment {
     @Id
     @GeneratedValue
     private Long id;
-    private Long businessEntityId;
+    private Long operatingCompanyId;
     private Long memberId;
     private Long orderId;
     private int processingYear;
     private int processingMonth;
     private int adjustmentYear;
     private int adjustmentMonth;
-    private Long adjustmentId;
+    private Long adjustmentCodeId;
     private BigDecimal adjustmentAmount;
     private BigDecimal adjustmentCC;
     private Long adjustmentLevelId;
@@ -31,9 +31,6 @@ public class BonusAdjustment {
     private Long updatedBy;
     private int rowStatusId;
 
-    @Relationship(value = "adjustment", direction = Relationship.Direction.OUTGOING)
-    BonusAdjustment adjustment = new BonusAdjustment();
-
     public Long getId() {
         return id;
     }
@@ -42,12 +39,12 @@ public class BonusAdjustment {
         this.id = id;
     }
 
-    public Long getBusinessEntityId() {
-        return businessEntityId;
+    public Long getOperatingCompanyId() {
+        return operatingCompanyId;
     }
 
-    public void setBusinessEntityId(Long businessEntityId) {
-        this.businessEntityId = businessEntityId;
+    public void setOperatingCompanyId(Long operatingCompanyId) {
+        this.operatingCompanyId = operatingCompanyId;
     }
 
     public Long getMemberId() {
@@ -99,11 +96,11 @@ public class BonusAdjustment {
     }
 
     public Long getAdjustmentId() {
-        return adjustmentId;
+        return adjustmentCodeId;
     }
 
     public void setAdjustmentId(Long adjustmentId) {
-        this.adjustmentId = adjustmentId;
+        this.adjustmentCodeId = adjustmentId;
     }
 
     public BigDecimal getAdjustmentAmount() {
@@ -176,13 +173,5 @@ public class BonusAdjustment {
 
     public void setRowStatusId(int rowStatusId) {
         this.rowStatusId = rowStatusId;
-    }
-
-    public BonusAdjustment getAdjustment() {
-        return adjustment;
-    }
-
-    public void setAdjustment(BonusAdjustment adjustment) {
-        this.adjustment = adjustment;
     }
 }

@@ -7,11 +7,9 @@ import org.neo4j.springframework.data.core.schema.Relationship;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Node
-public class BonusHistory {
+public class BonusMaster {
     @Id
     @GeneratedValue
     private Long id;
