@@ -19,6 +19,7 @@ public class BonusOrderDetail {
     private Long memberId;
     private Long memberSponsorId;
     private Long orderId;
+    private String orderNumber;
     private Long orderLineItemId;
 
     private BigDecimal personalCC;
@@ -46,6 +47,14 @@ public class BonusOrderDetail {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public int getOperatingCompanyId() {

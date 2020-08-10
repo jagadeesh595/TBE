@@ -1,5 +1,6 @@
 package com.ns.tbe.model.nodes;
 
+import com.ns.tbe.model.relationships.MemberOrderWiseBonus;
 import org.neo4j.springframework.data.core.schema.GeneratedValue;
 import org.neo4j.springframework.data.core.schema.Id;
 import org.neo4j.springframework.data.core.schema.Node;
@@ -7,6 +8,8 @@ import org.neo4j.springframework.data.core.schema.Relationship;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @Node
 public class BonusMaster {
@@ -64,6 +67,9 @@ public class BonusMaster {
     private Long updatedBy;
     private int rowStatusId;
 
+    @Relationship(value = "bonusOrder", direction = Relationship.Direction.OUTGOING)
+    private Map<BonusOrderDetail, MemberOrderWiseBonus> bonusOrderDetails = new HashMap<>();
+
     public Long getId() {
         return id;
     }
@@ -74,6 +80,14 @@ public class BonusMaster {
 
     public Long getOperatingCompanyId() {
         return operatingCompanyId;
+    }
+
+    public Map<BonusOrderDetail, MemberOrderWiseBonus> getBonusOrderDetails() {
+        return bonusOrderDetails;
+    }
+
+    public void setBonusOrderDetails(Map<BonusOrderDetail, MemberOrderWiseBonus> bonusOrderDetails) {
+        this.bonusOrderDetails = bonusOrderDetails;
     }
 
     public void setOperatingCompanyId(Long operatingCompanyId) {

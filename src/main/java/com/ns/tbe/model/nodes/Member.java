@@ -57,7 +57,7 @@ public class Member {
     @Relationship(value = "memberSponsor", direction = Relationship.Direction.OUTGOING)
     private Map<Member, MemberSponsor> memberSponsor = new HashMap<>();
 
-    @Relationship(value = "memberOrders", direction = Relationship.Direction.OUTGOING)
+    @Relationship(value = "memberOrder", direction = Relationship.Direction.OUTGOING)
     private Map<Order, MemberOrder> memberOrders = new HashMap<>();
 
     @Relationship(value = "memberBonus", direction = Relationship.Direction.OUTGOING)
@@ -66,10 +66,7 @@ public class Member {
     @Relationship(value = "bonusHistory", direction = Relationship.Direction.OUTGOING)
     private Map<BonusHistory, MemberBonus> bonusHistory = new HashMap<>();
 
-    @Relationship(value = "bonusOrders", direction = Relationship.Direction.OUTGOING)
-    private Map<BonusOrderDetail, MemberOrderWiseBonus> bonusOrderDetails = new HashMap<>();
-
-    @Relationship(value = "bonusAdjustments", direction = Relationship.Direction.OUTGOING)
+    @Relationship(value = "bonusAdjustment", direction = Relationship.Direction.OUTGOING)
     private Map<BonusAdjustment, MemberBonusAdjustment> bonusAdjustments = new HashMap<>();
 
     @Relationship(value = "waiverAndException", direction = Relationship.Direction.OUTGOING)
@@ -425,14 +422,6 @@ public class Member {
 
     public void setBonusHistory(Map<BonusHistory, MemberBonus> bonusHistory) {
         this.bonusHistory = bonusHistory;
-    }
-
-    public Map<BonusOrderDetail, MemberOrderWiseBonus> getBonusOrderDetails() {
-        return bonusOrderDetails;
-    }
-
-    public void setBonusOrderDetails(Map<BonusOrderDetail, MemberOrderWiseBonus> bonusOrderDetails) {
-        this.bonusOrderDetails = bonusOrderDetails;
     }
 
     public Map<BonusAdjustment, MemberBonusAdjustment> getBonusAdjustments() {

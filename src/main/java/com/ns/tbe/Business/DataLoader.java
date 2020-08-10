@@ -113,12 +113,39 @@ public class DataLoader {
             bonus.setBeginningLevelId(Long.valueOf(1));
             bonus.setEndingLevelId(Long.valueOf(2));
 
+            //region BonusOrderDetail
+            Map<BonusOrderDetail, MemberOrderWiseBonus> bonusOrderDetailMemberOrderWiseBonusMap = new HashMap<>();
+            BonusOrderDetail bonusOrderDetail = new BonusOrderDetail();
+            bonusOrderDetail.setProcessingYear(2020);
+            bonusOrderDetail.setProcessingMonth(8);
+            bonusOrderDetail.setOrderId(Long.valueOf(10003002));
+            bonusOrderDetail.setOrderNumber("ORD1002");
+
+            MemberOrderWiseBonus memberOrderWiseBonus = new MemberOrderWiseBonus();
+            memberOrderWiseBonus.setSalesCountry("USA");
+            memberOrderWiseBonus.setMemberId("TBE003");
+            bonusOrderDetailMemberOrderWiseBonusMap.put(bonusOrderDetail, memberOrderWiseBonus);
+
+            BonusOrderDetail bonusOrderDetail1 = new BonusOrderDetail();
+            bonusOrderDetail1.setProcessingYear(2020);
+            bonusOrderDetail1.setProcessingMonth(8);
+            bonusOrderDetail1.setOrderId(Long.valueOf(10003001));
+            bonusOrderDetail1.setOrderNumber("ORD1001");
+
+            MemberOrderWiseBonus memberOrderWiseBonus1 = new MemberOrderWiseBonus();
+            memberOrderWiseBonus1.setSalesCountry("USA");
+            memberOrderWiseBonus1.setMemberId("TBE003");
+            bonusOrderDetailMemberOrderWiseBonusMap.put(bonusOrderDetail1, memberOrderWiseBonus1);
+            bonus.setBonusOrderDetails(bonusOrderDetailMemberOrderWiseBonusMap);
+            //endregion BonusOrderDetail
+
             MemberBonus bonusPeriod = new MemberBonus();
             bonusPeriod.setSalesCountry("USA");
             bonusPeriod.setProcessingYear(2020);
             bonusPeriod.setProcessingMonth(7);
             bonusPeriod.setProcessingCycle(1);
             bonusBonusPeriodMap.put(bonus, bonusPeriod);
+
             member2.setMemberBonus(bonusBonusPeriodMap);
             //endregion BonusMaster data
 
@@ -160,18 +187,6 @@ public class DataLoader {
             waiverException.setSalesCountry("USA");
             memberWaiverAndExceptionWaiverExceptionMap.put(memberWaiverAndException, waiverException);
             member2.setMemberWaiverAndExceptionWaiverExceptionMap(memberWaiverAndExceptionWaiverExceptionMap);
-            //endregion MemberWaiverAndException
-
-            //region MemberWaiverAndException
-            Map<BonusOrderDetail, MemberOrderWiseBonus> bonusOrderDetailMemberOrderWiseBonusMap = new HashMap<>();
-            BonusOrderDetail bonusOrderDetail = new BonusOrderDetail();
-            bonusOrderDetail.setProcessingYear(2020);
-            bonusOrderDetail.setProcessingMonth(8);
-
-            MemberOrderWiseBonus memberOrderWiseBonus = new MemberOrderWiseBonus();
-            memberOrderWiseBonus.setSalesCountry("USA");
-            bonusOrderDetailMemberOrderWiseBonusMap.put(bonusOrderDetail, memberOrderWiseBonus);
-            member2.setBonusOrderDetails(bonusOrderDetailMemberOrderWiseBonusMap);
             //endregion MemberWaiverAndException
 
             memberRepository.save(member2).block();
