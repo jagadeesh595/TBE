@@ -1,7 +1,8 @@
 package com.ns.tbe.Business;
 
 import com.ns.tbe.model.nodes.*;
-import com.ns.tbe.model.relationships.BonusPeriod;
+import com.ns.tbe.model.relationships.MemberBonus;
+import com.ns.tbe.model.relationships.MemberOrder;
 import com.ns.tbe.model.relationships.MemberSponsor;
 import com.ns.tbe.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,24 @@ public class DataLoader {
             memberRepository.save(member).block();
             //endregion
 
-            //region - create new Member = Harish ("TBE002")
+            //region - create new Member = Kiran ("TBE002)
+            Member member3 = new Member();
+            member3.setMemberId("TBE002");
+            member3.setFirstName("Kiran");
+            member3.setLastName("Last");
+            member3.setDefaultAddress(true);
+            member3.setHomePhone("999,9999,999");
+            member3.setWorkPhone("944,4444,445");
+            member3.setCreatedDate(LocalDateTime.now());
+            member3.setCreatedBy(Long.valueOf(1));
+            member3.setRowStatusId(1);
+
+            memberRepository.save(member3).block();
+            //endregion
+
+            //region - create new Member = Harish ("TBE003")
             Member member2 = new Member();
-            member2.setMemberId("TBE002");
+            member2.setMemberId("TBE003");
             member2.setFirstName("Harish");
             member2.setLastName("Last");
             member2.setDefaultAddress(true);
@@ -46,23 +62,30 @@ public class DataLoader {
             member2.setRowStatusId(1);
 
             Member memberRajesh = memberRepository.findByMemberId("TBE001").block();
+            Member memberKiran = memberRepository.findByMemberId("TBE002").block();
 
-            Map<Member, MemberSponsor> memberMemberSponsor1 = new HashMap<>();
+            Map<Member, MemberSponsor> memberMemberSponsorMap = new HashMap<>();
+            MemberSponsor memberSponsor2 = new MemberSponsor();
+            memberSponsor2.setSalesCountry("GBR");
+            memberMemberSponsorMap.put(memberKiran, memberSponsor2);
 
             MemberSponsor memberSponsor = new MemberSponsor();
-            memberSponsor.setEnrolledDate(LocalDateTime.now());
-            memberSponsor.setMemberStatusId(1);
             memberSponsor.setSalesCountry("USA");
-            memberMemberSponsor1.put(memberRajesh, memberSponsor);
-            member2.setSponsors(memberMemberSponsor1);
+            memberMemberSponsorMap.put(memberRajesh, memberSponsor);
+
+            member2.setMemberSponsor(memberMemberSponsorMap);
 
             //region - order info
+            Map<Order, MemberOrder> memberOrderHashMap = new HashMap<>();
             Order order = new Order();
             order.setOrderNumber("ORD1001");
             order.setSalesCountryId(1);
             order.setMemberId(member2.getId());
             order.setTotalProductVolume(BigDecimal.valueOf(1.33));
             order.setTotalRetailPrice(BigDecimal.valueOf(200.00));
+
+            MemberOrder memberOrder=new MemberOrder();
+            memberOrder.setSalesCountry("USA");
 
             List<OrderLineItem> orderLineItems = new ArrayList<>();
             OrderLineItem orderLineItem1 = new OrderLineItem();
@@ -77,7 +100,10 @@ public class DataLoader {
             orderLineItems.add(orderLineItem2);
 
             order.setOrderLineItems(orderLineItems);
-            member2.setOrders(Arrays.asList(order));
+
+            memberOrderHashMap.put(order, memberOrder);
+
+            member2.setMemberOrders(memberOrderHashMap);
             //endregion - Order info
 
             BonusMaster bonus = new BonusMaster();
@@ -94,49 +120,18 @@ public class DataLoader {
             BonusMaster bonusMaster2 = new BonusMaster();
             bonusMasters.add(bonusMaster2);
 
-            Map<BonusMaster, BonusPeriod> bonusBonusPeriodMap = new HashMap<>();
-            BonusPeriod bonusPeriod = new BonusPeriod();
+            Map<BonusMaster, MemberBonus> bonusBonusPeriodMap = new HashMap<>();
+            MemberBonus bonusPeriod = new MemberBonus();
             bonusPeriod.setProcessingYear(2020);
             bonusPeriod.setProcessingMonth(7);
             bonusPeriod.setProcessingCycle(1);
             bonusBonusPeriodMap.put(bonus, bonusPeriod);
-            member2.setBonusDetails(bonusBonusPeriodMap);
+            member2.setMemberBonus(bonusBonusPeriodMap);
 
             memberRepository.save(member2).block();
             //endregion
 
-            //region - create new Member = Kiran ("TBE003")
-            Member member3 = new Member();
-            member3.setMemberId("TBE003");
-            member3.setFirstName("Kiran");
-            member3.setLastName("Last");
-            member3.setDefaultAddress(true);
-            member3.setHomePhone("999,9999,999");
-            member3.setWorkPhone("944,4444,445");
-            member3.setCreatedDate(LocalDateTime.now());
-            member3.setCreatedBy(Long.valueOf(1));
-            member3.setRowStatusId(1);
 
-            Member memberHarish = memberRepository.findByMemberId("TBE002").block();
-
-            Map<Member, MemberSponsor> memberMemberSponsorMap = new HashMap<>();
-
-            MemberSponsor memberSponsor1 = new MemberSponsor();
-            memberSponsor1.setEnrolledDate(LocalDateTime.now());
-            memberSponsor1.setMemberStatusId(1);
-            memberSponsor1.setSalesCountry("USA");
-            memberMemberSponsorMap.put(memberRajesh, memberSponsor1);
-
-            MemberSponsor memberSponsor2 = new MemberSponsor();
-            memberSponsor2.setEnrolledDate(LocalDateTime.of(2019, 3, 26, 10, 10));
-            memberSponsor2.setMemberStatusId(1);
-            memberSponsor2.setSalesCountry("GBR");
-            memberMemberSponsorMap.put(memberHarish, memberSponsor2);
-
-            member3.setSponsors(memberMemberSponsorMap);
-
-            memberRepository.save(member3).block();
-            //endregion
 
         } catch (Exception ex) {
             System.out.println(ex);

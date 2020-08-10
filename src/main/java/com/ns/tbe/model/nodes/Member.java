@@ -1,7 +1,6 @@
 package com.ns.tbe.model.nodes;
 
-import com.ns.tbe.model.relationships.BonusPeriod;
-import com.ns.tbe.model.relationships.MemberSponsor;
+import com.ns.tbe.model.relationships.*;
 import org.neo4j.springframework.data.core.schema.GeneratedValue;
 import org.neo4j.springframework.data.core.schema.Id;
 import org.neo4j.springframework.data.core.schema.Node;
@@ -57,23 +56,23 @@ public class Member {
     private Long updatedBy;
     private int rowStatusId;
 
-    @Relationship(value = "sponsoredBy", direction = Relationship.Direction.OUTGOING)
-    private Map<Member, MemberSponsor> sponsors = new HashMap<>();
+    @Relationship(value = "memberSponsor", direction = Relationship.Direction.OUTGOING)
+    private Map<Member, MemberSponsor> memberSponsor = new HashMap<>();
 
-    @Relationship(value = "ordered", direction = Relationship.Direction.OUTGOING)
-    private List<Order> orders = new ArrayList<>();
+    @Relationship(value = "memberOrders", direction = Relationship.Direction.OUTGOING)
+    private Map<Order, MemberOrder> memberOrders = new HashMap<>();
 
-    @Relationship(value = "bonus", direction = Relationship.Direction.OUTGOING)
-    private Map<BonusMaster, BonusPeriod> bonusDetails = new HashMap<>();
+    @Relationship(value = "memberBonus", direction = Relationship.Direction.OUTGOING)
+    private Map<BonusMaster, MemberBonus> memberBonus = new HashMap<>();
 
     @Relationship(value = "bonusHistory", direction = Relationship.Direction.OUTGOING)
-    private Map<BonusHistory, BonusPeriod> bonusHistory = new HashMap<>();
+    private Map<BonusHistory, MemberBonus> bonusHistory = new HashMap<>();
 
     @Relationship(value = "bonusOrders", direction = Relationship.Direction.OUTGOING)
-    private List<BonusOrderDetail> bonusOrderDetails = new ArrayList<>();
+    private Map<BonusOrderDetail, MemberOrderWiseBonus> bonusOrderDetails = new HashMap<>();
 
     @Relationship(value = "bonusAdjustments", direction = Relationship.Direction.OUTGOING)
-    private List<BonusAdjustment> bonusAdjustments = new ArrayList<>();
+    private Map<BonusAdjustment, MemberBonusAdjustment> bonusAdjustments = new HashMap<>();
 
     public Long getId() {
         return id;
@@ -387,51 +386,51 @@ public class Member {
         this.rowStatusId = rowStatusId;
     }
 
-    public Map<Member, MemberSponsor> getSponsors() {
-        return sponsors;
+    public Map<Member, MemberSponsor> getMemberSponsor() {
+        return memberSponsor;
     }
 
-    public void setSponsors(Map<Member, MemberSponsor> sponsors) {
-        this.sponsors = sponsors;
+    public void setMemberSponsor(Map<Member, MemberSponsor> memberSponsor) {
+        this.memberSponsor = memberSponsor;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public Map<Order, MemberOrder> getMemberOrders() {
+        return memberOrders;
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    public void setMemberOrders(Map<Order, MemberOrder> memberOrders) {
+        this.memberOrders = memberOrders;
     }
 
-    public Map<BonusMaster, BonusPeriod> getBonusDetails() {
-        return bonusDetails;
+    public Map<BonusMaster, MemberBonus> getMemberBonus() {
+        return memberBonus;
     }
 
-    public void setBonusDetails(Map<BonusMaster, BonusPeriod> bonusDetails) {
-        this.bonusDetails = bonusDetails;
+    public void setMemberBonus(Map<BonusMaster, MemberBonus> memberBonus) {
+        this.memberBonus = memberBonus;
     }
 
-    public Map<BonusHistory, BonusPeriod> getBonusHistory() {
+    public Map<BonusHistory, MemberBonus> getBonusHistory() {
         return bonusHistory;
     }
 
-    public void setBonusHistory(Map<BonusHistory, BonusPeriod> bonusHistory) {
+    public void setBonusHistory(Map<BonusHistory, MemberBonus> bonusHistory) {
         this.bonusHistory = bonusHistory;
     }
 
-    public List<BonusOrderDetail> getBonusOrderDetails() {
+    public Map<BonusOrderDetail, MemberOrderWiseBonus> getBonusOrderDetails() {
         return bonusOrderDetails;
     }
 
-    public void setBonusOrderDetails(List<BonusOrderDetail> bonusOrderDetails) {
+    public void setBonusOrderDetails(Map<BonusOrderDetail, MemberOrderWiseBonus> bonusOrderDetails) {
         this.bonusOrderDetails = bonusOrderDetails;
     }
 
-    public List<BonusAdjustment> getBonusAdjustments() {
+    public Map<BonusAdjustment, MemberBonusAdjustment> getBonusAdjustments() {
         return bonusAdjustments;
     }
 
-    public void setBonusAdjustments(List<BonusAdjustment> bonusAdjustments) {
+    public void setBonusAdjustments(Map<BonusAdjustment, MemberBonusAdjustment> bonusAdjustments) {
         this.bonusAdjustments = bonusAdjustments;
     }
 }

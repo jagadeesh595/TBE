@@ -3,10 +3,19 @@ package com.ns.tbe.model.relationships;
 import org.neo4j.springframework.data.core.schema.RelationshipProperties;
 
 @RelationshipProperties
-public class BonusPeriod {
+public class MemberBonus {
+    private String salesCountry;
     private int processingYear;
     private int processingMonth;
     private int processingCycle;
+
+    public String getSalesCountry() {
+        return salesCountry;
+    }
+
+    public void setSalesCountry(String salesCountry) {
+        this.salesCountry = salesCountry;
+    }
 
     public int getProcessingYear() {
         return processingYear;
