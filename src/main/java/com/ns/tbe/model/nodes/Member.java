@@ -7,9 +7,7 @@ import org.neo4j.springframework.data.core.schema.Node;
 import org.neo4j.springframework.data.core.schema.Relationship;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Node
@@ -74,6 +72,9 @@ public class Member {
     @Relationship(value = "bonusAdjustments", direction = Relationship.Direction.OUTGOING)
     private Map<BonusAdjustment, MemberBonusAdjustment> bonusAdjustments = new HashMap<>();
 
+    @Relationship(value = "waiverAndException", direction = Relationship.Direction.OUTGOING)
+    private Map<MemberWaiverAndException, WaiverException> memberWaiverAndExceptionWaiverExceptionMap = new HashMap<>();
+
     public Long getId() {
         return id;
     }
@@ -84,6 +85,14 @@ public class Member {
 
     public String getMemberId() {
         return memberId;
+    }
+
+    public Map<MemberWaiverAndException, WaiverException> getMemberWaiverAndExceptionWaiverExceptionMap() {
+        return memberWaiverAndExceptionWaiverExceptionMap;
+    }
+
+    public void setMemberWaiverAndExceptionWaiverExceptionMap(Map<MemberWaiverAndException, WaiverException> memberWaiverAndExceptionWaiverExceptionMap) {
+        this.memberWaiverAndExceptionWaiverExceptionMap = memberWaiverAndExceptionWaiverExceptionMap;
     }
 
     public void setMemberId(String memberId) {

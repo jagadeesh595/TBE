@@ -7,7 +7,7 @@ import org.neo4j.springframework.data.core.schema.Node;
 import java.time.LocalDateTime;
 
 @Node
-public class WaiverAndException {
+public class MemberWaiverAndException {
     @Id
     @GeneratedValue
     private Long id;

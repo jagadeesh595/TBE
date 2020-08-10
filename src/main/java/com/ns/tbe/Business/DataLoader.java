@@ -1,9 +1,7 @@
 package com.ns.tbe.Business;
 
 import com.ns.tbe.model.nodes.*;
-import com.ns.tbe.model.relationships.MemberBonus;
-import com.ns.tbe.model.relationships.MemberOrder;
-import com.ns.tbe.model.relationships.MemberSponsor;
+import com.ns.tbe.model.relationships.*;
 import com.ns.tbe.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -84,7 +82,7 @@ public class DataLoader {
             order.setTotalProductVolume(BigDecimal.valueOf(1.33));
             order.setTotalRetailPrice(BigDecimal.valueOf(200.00));
 
-            MemberOrder memberOrder=new MemberOrder();
+            MemberOrder memberOrder = new MemberOrder();
             memberOrder.setSalesCountry("USA");
 
             List<OrderLineItem> orderLineItems = new ArrayList<>();
@@ -106,6 +104,8 @@ public class DataLoader {
             member2.setMemberOrders(memberOrderHashMap);
             //endregion - Order info
 
+            //region BonusMaster data
+            Map<BonusMaster, MemberBonus> bonusBonusPeriodMap = new HashMap<>();
             BonusMaster bonus = new BonusMaster();
             bonus.setProcessingYear(2020);
             bonus.setProcessingMonth(8);
@@ -113,24 +113,69 @@ public class DataLoader {
             bonus.setBeginningLevelId(Long.valueOf(1));
             bonus.setEndingLevelId(Long.valueOf(2));
 
-            List<BonusMaster> bonusMasters = new ArrayList<>();
-            BonusMaster bonusMaster1 = new BonusMaster();
-            bonusMasters.add(bonusMaster1);
-
-            BonusMaster bonusMaster2 = new BonusMaster();
-            bonusMasters.add(bonusMaster2);
-
-            Map<BonusMaster, MemberBonus> bonusBonusPeriodMap = new HashMap<>();
             MemberBonus bonusPeriod = new MemberBonus();
+            bonusPeriod.setSalesCountry("USA");
             bonusPeriod.setProcessingYear(2020);
             bonusPeriod.setProcessingMonth(7);
             bonusPeriod.setProcessingCycle(1);
             bonusBonusPeriodMap.put(bonus, bonusPeriod);
             member2.setMemberBonus(bonusBonusPeriodMap);
+            //endregion BonusMaster data
+
+            //region Bonus Adjustment
+            Map<BonusAdjustment, MemberBonusAdjustment> memberBonusAdjustmentMap = new HashMap<>();
+            BonusAdjustment bonusAdjustment = new BonusAdjustment();
+            bonusAdjustment.setProcessingYear(2020);
+            bonusAdjustment.setProcessingMonth(8);
+            bonusAdjustment.setOperatingCompanyId(Long.valueOf(1));
+
+            MemberBonusAdjustment memberBonusAdjustment = new MemberBonusAdjustment();
+            memberBonusAdjustment.setSalesCountry("USA");
+            memberBonusAdjustmentMap.put(bonusAdjustment, memberBonusAdjustment);
+            member2.setBonusAdjustments(memberBonusAdjustmentMap);
+            //endregion Bonus Adjustment
+
+            //region Bonus History
+            Map<BonusHistory, MemberBonus> historyMemberBonusMap = new HashMap<>();
+            BonusHistory bonusHistory = new BonusHistory();
+            bonusHistory.setProcessingYear(2020);
+            bonusHistory.setProcessingMonth(8);
+
+            MemberBonus memberBonus1 = new MemberBonus();
+            memberBonus1.setSalesCountry("USA");
+            memberBonus1.setProcessingYear(2020);
+            memberBonus1.setProcessingMonth(7);
+            memberBonus1.setProcessingCycle(1);
+            historyMemberBonusMap.put(bonusHistory, memberBonus1);
+            member2.setBonusHistory(historyMemberBonusMap);
+            //endregion Bonus History
+
+            //region MemberWaiverAndException
+            Map<MemberWaiverAndException, WaiverException> memberWaiverAndExceptionWaiverExceptionMap = new HashMap<>();
+            MemberWaiverAndException memberWaiverAndException = new MemberWaiverAndException();
+            memberWaiverAndException.setProcessingYear(2020);
+            memberWaiverAndException.setProcessingMonth(8);
+
+            WaiverException waiverException = new WaiverException();
+            waiverException.setSalesCountry("USA");
+            memberWaiverAndExceptionWaiverExceptionMap.put(memberWaiverAndException, waiverException);
+            member2.setMemberWaiverAndExceptionWaiverExceptionMap(memberWaiverAndExceptionWaiverExceptionMap);
+            //endregion MemberWaiverAndException
+
+            //region MemberWaiverAndException
+            Map<BonusOrderDetail, MemberOrderWiseBonus> bonusOrderDetailMemberOrderWiseBonusMap = new HashMap<>();
+            BonusOrderDetail bonusOrderDetail = new BonusOrderDetail();
+            bonusOrderDetail.setProcessingYear(2020);
+            bonusOrderDetail.setProcessingMonth(8);
+
+            MemberOrderWiseBonus memberOrderWiseBonus = new MemberOrderWiseBonus();
+            memberOrderWiseBonus.setSalesCountry("USA");
+            bonusOrderDetailMemberOrderWiseBonusMap.put(bonusOrderDetail, memberOrderWiseBonus);
+            member2.setBonusOrderDetails(bonusOrderDetailMemberOrderWiseBonusMap);
+            //endregion MemberWaiverAndException
 
             memberRepository.save(member2).block();
             //endregion
-
 
 
         } catch (Exception ex) {
