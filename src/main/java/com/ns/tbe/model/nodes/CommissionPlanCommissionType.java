@@ -7,16 +7,13 @@ import org.neo4j.springframework.data.core.schema.Node;
 import java.time.LocalDateTime;
 
 @Node
-public class TimeZone {
+public class CommissionPlanCommissionType {
     @Id
     @GeneratedValue
     private Long id;
-    private String name;
-    private String abbrevation;
-    private float offset;
-    private Boolean dst;
-    private String displayText;
-    private int timeFormatId;
+    private Long accountId;
+    private Long compensationPlanId;
+    private Long commissionTypeId;
     private LocalDateTime createdDate;
     private Long createdBy;
     private LocalDateTime updatedDate;
@@ -31,52 +28,28 @@ public class TimeZone {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Long getAccountId() {
+        return accountId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 
-    public String getAbbrevation() {
-        return abbrevation;
+    public Long getCompensationPlanId() {
+        return compensationPlanId;
     }
 
-    public void setAbbrevation(String abbrevation) {
-        this.abbrevation = abbrevation;
+    public void setCompensationPlanId(Long compensationPlanId) {
+        this.compensationPlanId = compensationPlanId;
     }
 
-    public float getOffset() {
-        return offset;
+    public Long getCommissionTypeId() {
+        return commissionTypeId;
     }
 
-    public void setOffset(float offset) {
-        this.offset = offset;
-    }
-
-    public Boolean getDst() {
-        return dst;
-    }
-
-    public void setDst(Boolean dst) {
-        this.dst = dst;
-    }
-
-    public String getDisplayText() {
-        return displayText;
-    }
-
-    public void setDisplayText(String displayText) {
-        this.displayText = displayText;
-    }
-
-    public int getTimeFormatId() {
-        return timeFormatId;
-    }
-
-    public void setTimeFormatId(int timeFormatId) {
-        this.timeFormatId = timeFormatId;
+    public void setCommissionTypeId(Long commissionTypeId) {
+        this.commissionTypeId = commissionTypeId;
     }
 
     public LocalDateTime getCreatedDate() {

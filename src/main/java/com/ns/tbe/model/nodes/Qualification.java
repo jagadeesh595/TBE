@@ -7,16 +7,13 @@ import org.neo4j.springframework.data.core.schema.Node;
 import java.time.LocalDateTime;
 
 @Node
-public class TimeZone {
+public class Qualification {
     @Id
     @GeneratedValue
     private Long id;
     private String name;
-    private String abbrevation;
-    private float offset;
-    private Boolean dst;
-    private String displayText;
-    private int timeFormatId;
+    private String shortName;
+    private String comments;
     private LocalDateTime createdDate;
     private Long createdBy;
     private LocalDateTime updatedDate;
@@ -39,44 +36,20 @@ public class TimeZone {
         this.name = name;
     }
 
-    public String getAbbrevation() {
-        return abbrevation;
+    public String getShortName() {
+        return shortName;
     }
 
-    public void setAbbrevation(String abbrevation) {
-        this.abbrevation = abbrevation;
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
 
-    public float getOffset() {
-        return offset;
+    public String getComments() {
+        return comments;
     }
 
-    public void setOffset(float offset) {
-        this.offset = offset;
-    }
-
-    public Boolean getDst() {
-        return dst;
-    }
-
-    public void setDst(Boolean dst) {
-        this.dst = dst;
-    }
-
-    public String getDisplayText() {
-        return displayText;
-    }
-
-    public void setDisplayText(String displayText) {
-        this.displayText = displayText;
-    }
-
-    public int getTimeFormatId() {
-        return timeFormatId;
-    }
-
-    public void setTimeFormatId(int timeFormatId) {
-        this.timeFormatId = timeFormatId;
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
     public LocalDateTime getCreatedDate() {

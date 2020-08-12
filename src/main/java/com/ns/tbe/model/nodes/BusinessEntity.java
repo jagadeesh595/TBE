@@ -7,16 +7,17 @@ import org.neo4j.springframework.data.core.schema.Node;
 import java.time.LocalDateTime;
 
 @Node
-public class TimeZone {
+public class BusinessEntity {
     @Id
     @GeneratedValue
     private Long id;
-    private String name;
-    private String abbrevation;
-    private float offset;
-    private Boolean dst;
-    private String displayText;
-    private int timeFormatId;
+    private String businessEntityName;
+    private String shortCode;
+    private String emailAddress;
+    private String countryCode;
+    private String phoneNumber;
+    private String comments;
+    private String status;
     private LocalDateTime createdDate;
     private Long createdBy;
     private LocalDateTime updatedDate;
@@ -31,52 +32,60 @@ public class TimeZone {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getBusinessEntityName() {
+        return businessEntityName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBusinessEntityName(String businessEntityName) {
+        this.businessEntityName = businessEntityName;
     }
 
-    public String getAbbrevation() {
-        return abbrevation;
+    public String getShortCode() {
+        return shortCode;
     }
 
-    public void setAbbrevation(String abbrevation) {
-        this.abbrevation = abbrevation;
+    public void setShortCode(String shortCode) {
+        this.shortCode = shortCode;
     }
 
-    public float getOffset() {
-        return offset;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
-    public void setOffset(float offset) {
-        this.offset = offset;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
-    public Boolean getDst() {
-        return dst;
+    public String getCountryCode() {
+        return countryCode;
     }
 
-    public void setDst(Boolean dst) {
-        this.dst = dst;
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
     }
 
-    public String getDisplayText() {
-        return displayText;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setDisplayText(String displayText) {
-        this.displayText = displayText;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public int getTimeFormatId() {
-        return timeFormatId;
+    public String getComments() {
+        return comments;
     }
 
-    public void setTimeFormatId(int timeFormatId) {
-        this.timeFormatId = timeFormatId;
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public LocalDateTime getCreatedDate() {

@@ -7,16 +7,14 @@ import org.neo4j.springframework.data.core.schema.Node;
 import java.time.LocalDateTime;
 
 @Node
-public class TimeZone {
+public class BonusCycle {
     @Id
     @GeneratedValue
     private Long id;
     private String name;
-    private String abbrevation;
-    private float offset;
-    private Boolean dst;
-    private String displayText;
-    private int timeFormatId;
+    private int cycleId;
+    private int bonusComponentId;
+    private int businessEntityId;
     private LocalDateTime createdDate;
     private Long createdBy;
     private LocalDateTime updatedDate;
@@ -39,44 +37,28 @@ public class TimeZone {
         this.name = name;
     }
 
-    public String getAbbrevation() {
-        return abbrevation;
+    public int getCycleId() {
+        return cycleId;
     }
 
-    public void setAbbrevation(String abbrevation) {
-        this.abbrevation = abbrevation;
+    public void setCycleId(int cycleId) {
+        this.cycleId = cycleId;
     }
 
-    public float getOffset() {
-        return offset;
+    public int getBonusComponentId() {
+        return bonusComponentId;
     }
 
-    public void setOffset(float offset) {
-        this.offset = offset;
+    public void setBonusComponentId(int bonusComponentId) {
+        this.bonusComponentId = bonusComponentId;
     }
 
-    public Boolean getDst() {
-        return dst;
+    public int getBusinessEntityId() {
+        return businessEntityId;
     }
 
-    public void setDst(Boolean dst) {
-        this.dst = dst;
-    }
-
-    public String getDisplayText() {
-        return displayText;
-    }
-
-    public void setDisplayText(String displayText) {
-        this.displayText = displayText;
-    }
-
-    public int getTimeFormatId() {
-        return timeFormatId;
-    }
-
-    public void setTimeFormatId(int timeFormatId) {
-        this.timeFormatId = timeFormatId;
+    public void setBusinessEntityId(int businessEntityId) {
+        this.businessEntityId = businessEntityId;
     }
 
     public LocalDateTime getCreatedDate() {

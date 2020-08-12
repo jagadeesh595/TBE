@@ -7,21 +7,26 @@ import org.neo4j.springframework.data.core.schema.Node;
 import java.time.LocalDateTime;
 
 @Node
-public class TimeZone {
+public class PriceType {
     @Id
     @GeneratedValue
     private Long id;
     private String name;
-    private String abbrevation;
-    private float offset;
-    private Boolean dst;
-    private String displayText;
-    private int timeFormatId;
+    private String priceCode;
+    private String description;
     private LocalDateTime createdDate;
     private Long createdBy;
     private LocalDateTime updatedDate;
     private Long updatedBy;
     private int rowStatusId;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Long getId() {
         return id;
@@ -39,44 +44,12 @@ public class TimeZone {
         this.name = name;
     }
 
-    public String getAbbrevation() {
-        return abbrevation;
+    public String getPriceCode() {
+        return priceCode;
     }
 
-    public void setAbbrevation(String abbrevation) {
-        this.abbrevation = abbrevation;
-    }
-
-    public float getOffset() {
-        return offset;
-    }
-
-    public void setOffset(float offset) {
-        this.offset = offset;
-    }
-
-    public Boolean getDst() {
-        return dst;
-    }
-
-    public void setDst(Boolean dst) {
-        this.dst = dst;
-    }
-
-    public String getDisplayText() {
-        return displayText;
-    }
-
-    public void setDisplayText(String displayText) {
-        this.displayText = displayText;
-    }
-
-    public int getTimeFormatId() {
-        return timeFormatId;
-    }
-
-    public void setTimeFormatId(int timeFormatId) {
-        this.timeFormatId = timeFormatId;
+    public void setPriceCode(String priceCode) {
+        this.priceCode = priceCode;
     }
 
     public LocalDateTime getCreatedDate() {

@@ -5,31 +5,30 @@ import org.neo4j.springframework.data.core.schema.Id;
 import org.neo4j.springframework.data.core.schema.Node;
 import org.neo4j.springframework.data.core.schema.Relationship;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Node
-public class BonusHistory {
+@Node("Bonus")
+public class Bonus {
     @Id
     @GeneratedValue
     private Long id;
-    private int businessEntityId;
+    private Long businessEntityId;
     private int processingYear;
     private int processingMonth;
-    private int BonusCycleId;
+    private Long BonusCycleId;
     private Long memberId;
-    private int beginningLevelId;
-    private int endingLevelId;
+    private Long beginningLevelId;
+    private Long endingLevelId;
     private LocalDateTime createdDate;
     private Long createdBy;
     private LocalDateTime updatedDate;
     private Long updatedBy;
     private int rowStatusId;
 
-    @Relationship(value = "bonusHistoryDetails", direction = Relationship.Direction.OUTGOING)
-    List<BonusHistoryDetail> bonusHistoryDetails = new ArrayList<>();
+    @Relationship(value = "bonusDetails", direction = Relationship.Direction.OUTGOING)
+    List<BonusDetail> bonusDetails = new ArrayList<>();
 
     @Relationship(value = "bonusQualifications", direction = Relationship.Direction.OUTGOING)
     List<BonusQualification> bonusQualifications = new ArrayList<>();
@@ -43,6 +42,14 @@ public class BonusHistory {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getBusinessEntityId() {
+        return businessEntityId;
+    }
+
+    public void setBusinessEntityId(Long businessEntityId) {
+        this.businessEntityId = businessEntityId;
     }
 
     public int getProcessingYear() {
@@ -61,11 +68,11 @@ public class BonusHistory {
         this.processingMonth = processingMonth;
     }
 
-    public int getBonusCycleId() {
+    public Long getBonusCycleId() {
         return BonusCycleId;
     }
 
-    public void setBonusCycleId(int bonusCycleId) {
+    public void setBonusCycleId(Long bonusCycleId) {
         BonusCycleId = bonusCycleId;
     }
 
@@ -77,27 +84,19 @@ public class BonusHistory {
         this.memberId = memberId;
     }
 
-    public int getBusinessEntityId() {
-        return businessEntityId;
-    }
-
-    public void setBusinessEntityId(int businessEntityId) {
-        this.businessEntityId = businessEntityId;
-    }
-
-    public int getBeginningLevelId() {
+    public Long getBeginningLevelId() {
         return beginningLevelId;
     }
 
-    public void setBeginningLevelId(int beginningLevelId) {
+    public void setBeginningLevelId(Long beginningLevelId) {
         this.beginningLevelId = beginningLevelId;
     }
 
-    public int getEndingLevelId() {
+    public Long getEndingLevelId() {
         return endingLevelId;
     }
 
-    public void setEndingLevelId(int endingLevelId) {
+    public void setEndingLevelId(Long endingLevelId) {
         this.endingLevelId = endingLevelId;
     }
 
@@ -141,12 +140,12 @@ public class BonusHistory {
         this.rowStatusId = rowStatusId;
     }
 
-    public List<BonusHistoryDetail> getBonusHistoryDetails() {
-        return bonusHistoryDetails;
+    public List<BonusDetail> getBonusDetails() {
+        return bonusDetails;
     }
 
-    public void setBonusHistoryDetails(List<BonusHistoryDetail> bonusHistoryDetails) {
-        this.bonusHistoryDetails = bonusHistoryDetails;
+    public void setBonusDetails(List<BonusDetail> bonusDetails) {
+        this.bonusDetails = bonusDetails;
     }
 
     public List<BonusQualification> getBonusQualifications() {

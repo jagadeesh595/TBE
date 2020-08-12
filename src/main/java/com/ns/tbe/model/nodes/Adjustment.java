@@ -7,16 +7,15 @@ import org.neo4j.springframework.data.core.schema.Node;
 import java.time.LocalDateTime;
 
 @Node
-public class TimeZone {
+public class Adjustment {
     @Id
     @GeneratedValue
     private Long id;
+    private Long businessEntityId;
+    private Long adjustmentTypeId;
     private String name;
-    private String abbrevation;
-    private float offset;
-    private Boolean dst;
-    private String displayText;
-    private int timeFormatId;
+    private String code;
+    private String description;
     private LocalDateTime createdDate;
     private Long createdBy;
     private LocalDateTime updatedDate;
@@ -31,6 +30,22 @@ public class TimeZone {
         this.id = id;
     }
 
+    public Long getBusinessEntityId() {
+        return businessEntityId;
+    }
+
+    public void setBusinessEntityId(Long businessEntityId) {
+        this.businessEntityId = businessEntityId;
+    }
+
+    public Long getAdjustmentTypeId() {
+        return adjustmentTypeId;
+    }
+
+    public void setAdjustmentTypeId(Long adjustmentTypeId) {
+        this.adjustmentTypeId = adjustmentTypeId;
+    }
+
     public String getName() {
         return name;
     }
@@ -39,44 +54,20 @@ public class TimeZone {
         this.name = name;
     }
 
-    public String getAbbrevation() {
-        return abbrevation;
+    public String getCode() {
+        return code;
     }
 
-    public void setAbbrevation(String abbrevation) {
-        this.abbrevation = abbrevation;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public float getOffset() {
-        return offset;
+    public String getDescription() {
+        return description;
     }
 
-    public void setOffset(float offset) {
-        this.offset = offset;
-    }
-
-    public Boolean getDst() {
-        return dst;
-    }
-
-    public void setDst(Boolean dst) {
-        this.dst = dst;
-    }
-
-    public String getDisplayText() {
-        return displayText;
-    }
-
-    public void setDisplayText(String displayText) {
-        this.displayText = displayText;
-    }
-
-    public int getTimeFormatId() {
-        return timeFormatId;
-    }
-
-    public void setTimeFormatId(int timeFormatId) {
-        this.timeFormatId = timeFormatId;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public LocalDateTime getCreatedDate() {

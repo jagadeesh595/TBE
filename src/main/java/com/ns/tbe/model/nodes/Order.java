@@ -19,62 +19,31 @@ public class Order {
     private String orderNumber;
     private String webOrderNumber;
     private Long memberId;
-    private Long retailCustomerId;
     private int salesCountryId;
     private String distributorCountryCode;
     private String purchaseCountryCode;
-    private String orderType;
-    private String priceTier;
-    private String orderStatus;
-    private String orderSource;
+    private int orderTypeID;
+    private int priceTierID;
+    private int orderStatusID;
+    private Long orderSourceID;
     private int orderMonth;
     private int orderYear;
     private LocalDateTime orderDate;
-    private String currencyCode;
+    private int currencyID;
     private BigDecimal newDistributorPrice;
+    private BigDecimal totalProductRetailPrice;
+    private BigDecimal productWholeSalePrice;
     private BigDecimal totalRetailPrice;
     private BigDecimal totalWholeSalePrice;
-    private BigDecimal totalSellingPrice;
     private BigDecimal totalProductVolume;
-    private BigDecimal totalDiscount;
-    private BigDecimal totalDiscountPercent;
     private BigDecimal totalTaxAmount;
+    private BigDecimal totalSellingPrice;
+    private BigDecimal totalDiscount;
+    private BigDecimal shippingCharge;
+    private BigDecimal handlingCharge;
     private String shippingSource;
-    private String shippingFirstName;
-    private String shippingMiddleName;
-    private String shippingLastName;
-    private String shippingAddressLine1;
-    private String shippingAddressLine2;
-    private String shippingAddressLine3;
-    private String shippingAddressLine4;
-    private String shippingCity;
-    private String shippingState;
-    private String shippingCountry;
-    private String shippingPostalCode;
-    private String shippingLatitude;
-    private String shippingLongitude;
-    private String shippingPrimaryPhone;
-    private String shippingAlternatePhone;
-    private String shippingEmail;
-    private String shippingLocationCode;
-    private String billingFirstName;
-    private String billingMiddleName;
-    private String billingLastName;
-    private String billingAddressLine1;
-    private String billingAddressLine2;
-    private String billingAddressLine3;
-    private String billingAddressLine4;
-    private String billingCity;
-    private String billingState;
-    private String billingCountry;
-    private String billingPostalCode;
-    private String billingLatitude;
-    private String billingLongitude;
-    private String billingPrimaryPhone;
-    private String billingAlternatePhone;
-    private String billingEmail;
-    private String billingLocationCode;
-    private boolean isHistory;
+    private long shippingOrderAddressID;
+    private long billingOrderAddressID;
     private LocalDateTime createdDate;
     private Long createdBy;
     private LocalDateTime updatedDate;
@@ -84,12 +53,44 @@ public class Order {
     @Relationship(value = "orderLineItems", direction = Relationship.Direction.OUTGOING)
     List<OrderLineItem> orderLineItems = new ArrayList<>();
 
+    @Relationship(value = "salesCountry", direction = Relationship.Direction.OUTGOING)
+    SalesCountry salesCountry = new SalesCountry();
+
+    @Relationship(value = "orderType", direction = Relationship.Direction.OUTGOING)
+    OrderType orderType = new OrderType();
+
+    @Relationship(value = "priceTier", direction = Relationship.Direction.OUTGOING)
+    PriceTier priceTier = new PriceTier();
+
+    @Relationship(value = "orderStatus", direction = Relationship.Direction.OUTGOING)
+    OrderStatus orderStatus = new OrderStatus();
+
+    @Relationship(value = "orderSource", direction = Relationship.Direction.OUTGOING)
+    OrderSource orderSource = new OrderSource();
+
+    @Relationship(value = "currency", direction = Relationship.Direction.OUTGOING)
+    Currency currency = new Currency();
+
+    @Relationship(value = "shppingAddress", direction = Relationship.Direction.OUTGOING)
+    OrderAddress shppingAddress = new OrderAddress();
+
+    @Relationship(value = "billingAddress", direction = Relationship.Direction.OUTGOING)
+    OrderAddress billingAddress = new OrderAddress();
+
     public Long getId() {
         return Id;
     }
 
     public void setId(Long id) {
         Id = id;
+    }
+
+    public List<OrderLineItem> getOrderLineItems() {
+        return orderLineItems;
+    }
+
+    public void setOrderLineItems(List<OrderLineItem> orderLineItems) {
+        this.orderLineItems = orderLineItems;
     }
 
     public String getOrderNumber() {
@@ -140,36 +141,36 @@ public class Order {
         this.purchaseCountryCode = purchaseCountryCode;
     }
 
-    public String getOrderType() {
-        return orderType;
+    public int getOrderTypeID() {
+        return orderTypeID;
     }
 
-    public void setOrderType(String orderType) {
-        this.orderType = orderType;
+    public void setOrderTypeID(int orderTypeID) {
+        this.orderTypeID = orderTypeID;
     }
 
-    public String getPriceTier() {
-        return priceTier;
+    public int getPriceTierID() {
+        return priceTierID;
     }
 
-    public void setPriceTier(String priceTier) {
-        this.priceTier = priceTier;
+    public void setPriceTierID(int priceTierID) {
+        this.priceTierID = priceTierID;
     }
 
-    public String getOrderStatus() {
-        return orderStatus;
+    public int getOrderStatusID() {
+        return orderStatusID;
     }
 
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
+    public void setOrderStatusID(int orderStatusID) {
+        this.orderStatusID = orderStatusID;
     }
 
-    public String getOrderSource() {
-        return orderSource;
+    public Long getOrderSourceID() {
+        return orderSourceID;
     }
 
-    public void setOrderSource(String orderSource) {
-        this.orderSource = orderSource;
+    public void setOrderSourceID(Long orderSourceID) {
+        this.orderSourceID = orderSourceID;
     }
 
     public int getOrderMonth() {
@@ -196,12 +197,12 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public String getCurrencyCode() {
-        return currencyCode;
+    public int getCurrencyID() {
+        return currencyID;
     }
 
-    public void setCurrencyCode(String currencyCode) {
-        this.currencyCode = currencyCode;
+    public void setCurrencyID(int currencyID) {
+        this.currencyID = currencyID;
     }
 
     public BigDecimal getNewDistributorPrice() {
@@ -210,6 +211,22 @@ public class Order {
 
     public void setNewDistributorPrice(BigDecimal newDistributorPrice) {
         this.newDistributorPrice = newDistributorPrice;
+    }
+
+    public BigDecimal getTotalProductRetailPrice() {
+        return totalProductRetailPrice;
+    }
+
+    public void setTotalProductRetailPrice(BigDecimal totalProductRetailPrice) {
+        this.totalProductRetailPrice = totalProductRetailPrice;
+    }
+
+    public BigDecimal getProductWholeSalePrice() {
+        return productWholeSalePrice;
+    }
+
+    public void setProductWholeSalePrice(BigDecimal productWholeSalePrice) {
+        this.productWholeSalePrice = productWholeSalePrice;
     }
 
     public BigDecimal getTotalRetailPrice() {
@@ -228,36 +245,12 @@ public class Order {
         this.totalWholeSalePrice = totalWholeSalePrice;
     }
 
-    public BigDecimal getTotalSellingPrice() {
-        return totalSellingPrice;
-    }
-
-    public void setTotalSellingPrice(BigDecimal totalSellingPrice) {
-        this.totalSellingPrice = totalSellingPrice;
-    }
-
     public BigDecimal getTotalProductVolume() {
         return totalProductVolume;
     }
 
     public void setTotalProductVolume(BigDecimal totalProductVolume) {
         this.totalProductVolume = totalProductVolume;
-    }
-
-    public BigDecimal getTotalDiscount() {
-        return totalDiscount;
-    }
-
-    public void setTotalDiscount(BigDecimal totalDiscount) {
-        this.totalDiscount = totalDiscount;
-    }
-
-    public BigDecimal getTotalDiscountPercent() {
-        return totalDiscountPercent;
-    }
-
-    public void setTotalDiscountPercent(BigDecimal totalDiscountPercent) {
-        this.totalDiscountPercent = totalDiscountPercent;
     }
 
     public BigDecimal getTotalTaxAmount() {
@@ -268,292 +261,44 @@ public class Order {
         this.totalTaxAmount = totalTaxAmount;
     }
 
+    public BigDecimal getTotalSellingPrice() {
+        return totalSellingPrice;
+    }
+
+    public void setTotalSellingPrice(BigDecimal totalSellingPrice) {
+        this.totalSellingPrice = totalSellingPrice;
+    }
+
+    public BigDecimal getTotalDiscount() {
+        return totalDiscount;
+    }
+
+    public void setTotalDiscount(BigDecimal totalDiscount) {
+        this.totalDiscount = totalDiscount;
+    }
+
+    public BigDecimal getShippingCharge() {
+        return shippingCharge;
+    }
+
+    public void setShippingCharge(BigDecimal shippingCharge) {
+        this.shippingCharge = shippingCharge;
+    }
+
+    public BigDecimal getHandlingCharge() {
+        return handlingCharge;
+    }
+
+    public void setHandlingCharge(BigDecimal handlingCharge) {
+        this.handlingCharge = handlingCharge;
+    }
+
     public String getShippingSource() {
         return shippingSource;
     }
 
     public void setShippingSource(String shippingSource) {
         this.shippingSource = shippingSource;
-    }
-
-    public String getShippingFirstName() {
-        return shippingFirstName;
-    }
-
-    public void setShippingFirstName(String shippingFirstName) {
-        this.shippingFirstName = shippingFirstName;
-    }
-
-    public String getShippingMiddleName() {
-        return shippingMiddleName;
-    }
-
-    public void setShippingMiddleName(String shippingMiddleName) {
-        this.shippingMiddleName = shippingMiddleName;
-    }
-
-    public String getShippingLastName() {
-        return shippingLastName;
-    }
-
-    public void setShippingLastName(String shippingLastName) {
-        this.shippingLastName = shippingLastName;
-    }
-
-    public String getShippingAddressLine1() {
-        return shippingAddressLine1;
-    }
-
-    public void setShippingAddressLine1(String shippingAddressLine1) {
-        this.shippingAddressLine1 = shippingAddressLine1;
-    }
-
-    public String getShippingAddressLine2() {
-        return shippingAddressLine2;
-    }
-
-    public void setShippingAddressLine2(String shippingAddressLine2) {
-        this.shippingAddressLine2 = shippingAddressLine2;
-    }
-
-    public String getShippingAddressLine3() {
-        return shippingAddressLine3;
-    }
-
-    public void setShippingAddressLine3(String shippingAddressLine3) {
-        this.shippingAddressLine3 = shippingAddressLine3;
-    }
-
-    public String getShippingAddressLine4() {
-        return shippingAddressLine4;
-    }
-
-    public void setShippingAddressLine4(String shippingAddressLine4) {
-        this.shippingAddressLine4 = shippingAddressLine4;
-    }
-
-    public String getShippingCity() {
-        return shippingCity;
-    }
-
-    public void setShippingCity(String shippingCity) {
-        this.shippingCity = shippingCity;
-    }
-
-    public String getShippingState() {
-        return shippingState;
-    }
-
-    public void setShippingState(String shippingState) {
-        this.shippingState = shippingState;
-    }
-
-    public String getShippingCountry() {
-        return shippingCountry;
-    }
-
-    public void setShippingCountry(String shippingCountry) {
-        this.shippingCountry = shippingCountry;
-    }
-
-    public String getShippingPostalCode() {
-        return shippingPostalCode;
-    }
-
-    public void setShippingPostalCode(String shippingPostalCode) {
-        this.shippingPostalCode = shippingPostalCode;
-    }
-
-    public String getShippingLatitude() {
-        return shippingLatitude;
-    }
-
-    public void setShippingLatitude(String shippingLatitude) {
-        this.shippingLatitude = shippingLatitude;
-    }
-
-    public String getShippingLongitude() {
-        return shippingLongitude;
-    }
-
-    public void setShippingLongitude(String shippingLongitude) {
-        this.shippingLongitude = shippingLongitude;
-    }
-
-    public String getShippingPrimaryPhone() {
-        return shippingPrimaryPhone;
-    }
-
-    public void setShippingPrimaryPhone(String shippingPrimaryPhone) {
-        this.shippingPrimaryPhone = shippingPrimaryPhone;
-    }
-
-    public String getShippingAlternatePhone() {
-        return shippingAlternatePhone;
-    }
-
-    public void setShippingAlternatePhone(String shippingAlternatePhone) {
-        this.shippingAlternatePhone = shippingAlternatePhone;
-    }
-
-    public String getShippingEmail() {
-        return shippingEmail;
-    }
-
-    public void setShippingEmail(String shippingEmail) {
-        this.shippingEmail = shippingEmail;
-    }
-
-    public String getShippingLocationCode() {
-        return shippingLocationCode;
-    }
-
-    public void setShippingLocationCode(String shippingLocationCode) {
-        this.shippingLocationCode = shippingLocationCode;
-    }
-
-    public String getBillingFirstName() {
-        return billingFirstName;
-    }
-
-    public void setBillingFirstName(String billingFirstName) {
-        this.billingFirstName = billingFirstName;
-    }
-
-    public String getBillingMiddleName() {
-        return billingMiddleName;
-    }
-
-    public void setBillingMiddleName(String billingMiddleName) {
-        this.billingMiddleName = billingMiddleName;
-    }
-
-    public String getBillingLastName() {
-        return billingLastName;
-    }
-
-    public void setBillingLastName(String billingLastName) {
-        this.billingLastName = billingLastName;
-    }
-
-    public String getBillingAddressLine1() {
-        return billingAddressLine1;
-    }
-
-    public void setBillingAddressLine1(String billingAddressLine1) {
-        this.billingAddressLine1 = billingAddressLine1;
-    }
-
-    public String getBillingAddressLine2() {
-        return billingAddressLine2;
-    }
-
-    public void setBillingAddressLine2(String billingAddressLine2) {
-        this.billingAddressLine2 = billingAddressLine2;
-    }
-
-    public String getBillingAddressLine3() {
-        return billingAddressLine3;
-    }
-
-    public void setBillingAddressLine3(String billingAddressLine3) {
-        this.billingAddressLine3 = billingAddressLine3;
-    }
-
-    public String getBillingAddressLine4() {
-        return billingAddressLine4;
-    }
-
-    public void setBillingAddressLine4(String billingAddressLine4) {
-        this.billingAddressLine4 = billingAddressLine4;
-    }
-
-    public String getBillingCity() {
-        return billingCity;
-    }
-
-    public void setBillingCity(String billingCity) {
-        this.billingCity = billingCity;
-    }
-
-    public String getBillingState() {
-        return billingState;
-    }
-
-    public void setBillingState(String billingState) {
-        this.billingState = billingState;
-    }
-
-    public String getBillingCountry() {
-        return billingCountry;
-    }
-
-    public void setBillingCountry(String billingCountry) {
-        this.billingCountry = billingCountry;
-    }
-
-    public String getBillingPostalCode() {
-        return billingPostalCode;
-    }
-
-    public void setBillingPostalCode(String billingPostalCode) {
-        this.billingPostalCode = billingPostalCode;
-    }
-
-    public String getBillingLatitude() {
-        return billingLatitude;
-    }
-
-    public void setBillingLatitude(String billingLatitude) {
-        this.billingLatitude = billingLatitude;
-    }
-
-    public String getBillingLongitude() {
-        return billingLongitude;
-    }
-
-    public void setBillingLongitude(String billingLongitude) {
-        this.billingLongitude = billingLongitude;
-    }
-
-    public String getBillingPrimaryPhone() {
-        return billingPrimaryPhone;
-    }
-
-    public void setBillingPrimaryPhone(String billingPrimaryPhone) {
-        this.billingPrimaryPhone = billingPrimaryPhone;
-    }
-
-    public String getBillingAlternatePhone() {
-        return billingAlternatePhone;
-    }
-
-    public void setBillingAlternatePhone(String billingAlternatePhone) {
-        this.billingAlternatePhone = billingAlternatePhone;
-    }
-
-    public String getBillingEmail() {
-        return billingEmail;
-    }
-
-    public void setBillingEmail(String billingEmail) {
-        this.billingEmail = billingEmail;
-    }
-
-    public String getBillingLocationCode() {
-        return billingLocationCode;
-    }
-
-    public void setBillingLocationCode(String billingLocationCode) {
-        this.billingLocationCode = billingLocationCode;
-    }
-
-    public boolean isHistory() {
-        return isHistory;
-    }
-
-    public void setHistory(boolean history) {
-        isHistory = history;
     }
 
     public LocalDateTime getCreatedDate() {
@@ -596,11 +341,83 @@ public class Order {
         this.rowStatusId = rowStatusId;
     }
 
-    public List<OrderLineItem> getOrderLineItems() {
-        return orderLineItems;
+    public SalesCountry getSalesCountry() {
+        return salesCountry;
     }
 
-    public void setOrderLineItems(List<OrderLineItem> orderLineItems) {
-        this.orderLineItems = orderLineItems;
+    public long getShippingOrderAddressID() {
+        return shippingOrderAddressID;
+    }
+
+    public void setShippingOrderAddressID(long shippingOrderAddressID) {
+        this.shippingOrderAddressID = shippingOrderAddressID;
+    }
+
+    public long getBillingOrderAddressID() {
+        return billingOrderAddressID;
+    }
+
+    public void setBillingOrderAddressID(long billingOrderAddressID) {
+        this.billingOrderAddressID = billingOrderAddressID;
+    }
+
+    public OrderAddress getShppingAddress() {
+        return shppingAddress;
+    }
+
+    public void setShppingAddress(OrderAddress shppingAddress) {
+        this.shppingAddress = shppingAddress;
+    }
+
+    public OrderAddress getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(OrderAddress billingAddress) {
+        this.billingAddress = billingAddress;
+    }
+
+    public void setSalesCountry(SalesCountry salesCountry) {
+        this.salesCountry = salesCountry;
+    }
+
+    public OrderType getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(OrderType orderType) {
+        this.orderType = orderType;
+    }
+
+    public PriceTier getPriceTier() {
+        return priceTier;
+    }
+
+    public void setPriceTier(PriceTier priceTier) {
+        this.priceTier = priceTier;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public OrderSource getOrderSource() {
+        return orderSource;
+    }
+
+    public void setOrderSource(OrderSource orderSource) {
+        this.orderSource = orderSource;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
     }
 }

@@ -3,19 +3,16 @@ package com.ns.tbe.model.nodes;
 import org.neo4j.springframework.data.core.schema.GeneratedValue;
 import org.neo4j.springframework.data.core.schema.Id;
 import org.neo4j.springframework.data.core.schema.Node;
-import org.neo4j.springframework.data.core.schema.Relationship;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Node
-public class OrderLineItem {
+public class OrderLineItemHistory {
     @Id
     @GeneratedValue
     private Long id;
-    private long orderID;
+    private long orderLineItemID;
     private String itemNumber;
     private String itemName;
     private int quantity;
@@ -39,9 +36,6 @@ public class OrderLineItem {
     private Long updatedBy;
     private int rowStatusId;
 
-    @Relationship(value = "orderLineItemHistory", direction = Relationship.Direction.OUTGOING)
-    List<OrderLineItemHistory> orderLineItemHistory = new ArrayList<>();
-
     public Long getId() {
         return id;
     }
@@ -50,12 +44,12 @@ public class OrderLineItem {
         this.id = id;
     }
 
-    public long getOrderID() {
-        return orderID;
+    public long getOrderLineItemID() {
+        return orderLineItemID;
     }
 
-    public void setOrderID(long orderID) {
-        this.orderID = orderID;
+    public void setOrderLineItemID(long orderLineItemID) {
+        this.orderLineItemID = orderLineItemID;
     }
 
     public String getItemNumber() {
@@ -232,13 +226,5 @@ public class OrderLineItem {
 
     public void setRowStatusId(int rowStatusId) {
         this.rowStatusId = rowStatusId;
-    }
-
-    public List<OrderLineItemHistory> getOrderLineItemHistory() {
-        return orderLineItemHistory;
-    }
-
-    public void setOrderLineItemHistory(List<OrderLineItemHistory> orderLineItemHistory) {
-        this.orderLineItemHistory = orderLineItemHistory;
     }
 }
